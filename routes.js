@@ -21,7 +21,7 @@ router.get('/ausencias', (req, res) => {
 
 // ver un profesor
 router.get('/docentes/:nombre', (req, res) => {
-    Docentes.findOne({_id: req.params.id }, (err, data) => {
+    Docentes.findOne({ nombre: req.params.nombre }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
@@ -29,36 +29,38 @@ router.get('/docentes/:nombre', (req, res) => {
 
 // ver una ausencia
 router.get('/ausencias/:fecha/:hora', (req, res) => {
-    Ausencias.findOne({_id: req.params.id }, (err, data) => {
+    Ausencias.findOne({ hora: req.params.hora }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
 
-/* Comentado porque no se va a usar
+// ---------------------------------------------------------------
+// Comentado porque no se va a usar (COMENTAR DESPUES ESTE BLOQUE)
+// ---------------------------------------------------------------
 
-// eliminar un concesionario
-router.delete('/concesionario/:id', (req, res) => {
-    Concesionario.findOneAndRemove({_id: req.params.id }, (err, data) => {
+/*
+
+// eliminar un profesor
+router.delete('/docentes/:nombre', (req, res) => {
+    Docentes.findOneAndRemove({ nombre: req.params.nombre }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
 
-// eliminar un coche
-router.delete('/coches/:id', (req, res) => {
-    Coches.findOneAndRemove({_id: req.params.id }, (err, data) => {
+// eliminar una ausencia
+router.delete('/ausencias/:fecha/:hora', (req, res) => {
+    Ausencias.findOneAndRemove({ hora: req.params.hora }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
 
-// actualizar un concesionario
-router.put('/concesionario/:id', (req, res) => {
-    Concesionario.findOneAndUpdate({_id: req.params.id },
-        { $set: { cochesRegistrados: req.body.cochesRegistrados,
-                  ubicacion: req.body.ubicacion,
-                  nombre: req.body.nombre
+// actualizar un profesor
+router.put('/docentes/:nombre', (req, res) => {
+    Docentes.findOneAndUpdate({ nombre: req.params.nombre },
+        { $set: { nombre: req.body.nombre
                 } 
             },
         (err, data) => {
@@ -67,12 +69,13 @@ router.put('/concesionario/:id', (req, res) => {
         });
 });
 
-// actualizar un coche
-router.put('/coches/:id', (req, res) => {
-    Coches.findOneAndUpdate({_id: req.params.id },
-        { $set: { marca: req.body.marca,
-                  modelo: req.body.modelo,
-                  precio: req.body.precio
+// actualizar un ausencia
+router.put('/ausencias/:fecha/:hora', (req, res) => {
+    Ausencias.findOneAndUpdate({ hora: req.params.hora },
+        { $set: { fecha: req.body.fecha,
+                  hora: req.body.hora,
+                  nombre: req.body.nombre,
+                  curso: req.body.curso
                 } 
             },
         (err, data) => {
@@ -81,11 +84,9 @@ router.put('/coches/:id', (req, res) => {
         });
 });
 
-// insertar un concesionario
-router.post('/concesionario', (req, res) => {
-    const concesionario = new Concesionario({
-        cochesRegistrados: req.body.cochesRegistrados,
-        ubicacion: req.body.ubicacion,
+// insertar un profesor
+router.post('/docentes', (req, res) => {
+    const concesionario = new Docentes({
         nombre: req.body.nombre
     });
     concesionario.save((err, data) => {
@@ -94,12 +95,13 @@ router.post('/concesionario', (req, res) => {
     });
 });
 
-// insertar un coche
-router.post('/coches', (req, res) => {
-    const coches = new Coches({
-        marca: req.body.marca,
-        modelo: req.body.modelo,
-        precio: req.body.precio
+// insertar un ausencia
+router.post('/ausencias', (req, res) => {
+    const coches = new Ausencias({
+        fecha: req.body.fecha,
+        hora: req.body.hora,
+        nombre: req.body.nombre,
+        curso: req.body.curso
     });
     coches.save((err, data) => {
         if (err) res.json({ error: err });
