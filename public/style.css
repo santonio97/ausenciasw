@@ -23,7 +23,7 @@ html {
 
 body {
     background-image: url("fondo.png");
-    color: black;
+    color: rgb(104, 16, 16);
     -webkit-font-smoothing: antialiased;
     line-height: 1.42857143;
     background-size: cover;
@@ -36,11 +36,13 @@ nav {
     width: 100%;
     position: fixed;
     font-weight: bolder;
-    color: greenyellow;
-    text-shadow: -2px -2px 8px rgb(0, 2, 104);
-    text-shadow: 2px 2px 6px rgb(0, 2, 104);
+    color: rgb(3, 12, 92);
+    text-shadow: 2px 2px 8px rgb(255, 255, 255);
+    text-shadow: 2px 2px 6px rgb(255, 255, 255);
     z-index: 1;
     background-size: cover;
+    font-size: 1.1em;
+    font-family: arial, sans-serif, Verdana
 }
 
 main {
@@ -65,15 +67,15 @@ input[type=radio]+label {
 input[type=radio]+label:hover {
     padding: 10px;
     border-radius: 5px;
-    color: rgb(0, 0, 0);
-    background: lightgray;
+    color: rgb(34, 70, 18);
+    background: transparent;
 }
 
 input[type=radio]:checked+label {
-    background-color: #ffffff;
-    border: solid 1px gray;
+    background-color: transparent;
+    border: solid 1px rgb(0, 0, 0);
     border-radius: 5px;
-    color: #000;
+    color: rgb(34, 70, 18);
 }
 
 div#OK, div#KO {
@@ -184,7 +186,7 @@ label#menu-inicio-label>span::after {
     content: " Inicio";
 }
 
-label#menu-docentes-label>span::after {
+label#menu-docente-label>span::after {
     content: " Docentes";
 }
 
@@ -292,7 +294,7 @@ caption {
     padding: 4px 8px;
 }
 
-.sort-table th.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso {
+.sort-table th.docente-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso*/ {
     width: 40% !important;
 }
 
@@ -300,18 +302,18 @@ caption {
     width: 40% !important;
 }
 
-.sort-table th.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre {
+.sort-table th.docente-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre*/ {
     font-weight: bold;
 }
 
-.sort-table th.docentes-nombre small, .sort-table th.ausencias-fecha small, .sort-table th.ausencias-hora small, .sort-table th.ausencias.nombre small {
+.sort-table th.docente-nombre small, .sort-table th.ausencias-fecha small/*, .sort-table th.ausencias-hora small, .sort-table th.ausencias.nombre small*/ {
     font-weight: normal;
 }
 
 /* Responsive table full */
 
 @media (max-width: 767px) {
-    label#menu-inicio-label>span::after, label#menu-docentes-label>span::after, label#menu-ausencias-label>span::after {
+    label#menu-inicio-label>span::after, label#menu-docente-label>span::after, label#menu-ausencias-label>span::after {
         content: none;
     }
     table {
@@ -385,17 +387,17 @@ caption {
         margin: 3px 0;
         padding: 10px;
     }
-    .sort-table td.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso {
+    .sort-table td.docente-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso*/ {
         width: 100px !important;
     }
-    .sort-table td.docentes-nombre:before, .sort-table th.ausencias-fecha:before, .sort-table th.ausencias-hora:before, .sort-table th.ausencias.nombre:before {
+    .sort-table td.docente-nombre:before, .sort-table th.ausencias-fecha:before/*, .sort-table th.ausencias-hora:before, .sort-table th.ausencias.nombre:before*/ {
         display: none;
     }
-    .sort-table td.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre {
+    .sort-table td.docente-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre*/ {
         letter-spacing: .03em;
         padding-left: 14px;
     }
-    .sort-table td.docentes-nombre>input, .sort-table th.ausencias-fecha>input, .sort-table th.ausencias-hora>input, .sort-table th.ausencias.nombre>input {
+    .sort-table td.docente-nombre>input, .sort-table th.ausencias-fecha>input/*, .sort-table th.ausencias-hora>input, .sort-table th.ausencias.nombre>input*/ {
         font-weight: bold;
     }
 }

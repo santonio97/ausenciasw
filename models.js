@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 
-const Docentes = mongoose.model('/api/docentes', {
+const Docente = mongoose.model('docente', {
     nombre: String
 });
 
-const Ausencias = mongoose.model('/api/ausencias', {
-    fecha: String,
+const Ausencias = mongoose.model('ausencias', {
+    fecha: Date/*,
     hora: Number,
     nombre: String,
-    curso: String
+    curso: String*/
 });
 
 module.exports = {
-    Docentes,
+    Docente,
     Ausencias
 };

@@ -1,7 +1,9 @@
 let colecciones = {
-    docentes: { nombre: 'string' },
-    aucencias: { fecha: 'string', hora: 'number', nombre: 'string', curso: 'string' }
+    docente: { nombre: 'date' },
+    ausencias: { fecha: 'number'/*, hora: 'number', nombre: 'string', curso: 'string'*/ }
 };
+
+//
 
 let index = `
      <div style="margin: 30px">
@@ -9,16 +11,10 @@ let index = `
          <h2>SPA</h2>
      </div>`;
 
-     /* Referencias:
-   - https://codepen.io/travishorn/pen/qXvaKa
-   - https://travishorn.com/building-json2table-turn-json-into-an-html-table-a57cf642b84a
-   - https://codepen.io/mlegakis/pen/jBYPGr
-   */
-
 window.addEventListener('load', function () {
 
     let i = document.getElementById('inicio');
-    let a = document.getElementById('docentes');
+    let a = document.getElementById('docente');
     let c = document.getElementById('ausencias');
 
     i.innerHTML = index;
@@ -30,15 +26,15 @@ window.addEventListener('load', function () {
         c.style.display = 'none';  c.innerHTML = '';       
     });
 
-    document.getElementById('menu-docentes').addEventListener('click', function (e) {
-        verDocumentos('concesionario');
+    document.getElementById('menu-docente').addEventListener('click', function (e) {
+        verDocumentos('docente');
         a.style.display = 'block';
         i.style.display = 'none';
         c.style.display = 'none';  c.innerHTML = '';       
     });
 
     document.getElementById('menu-ausencias').addEventListener('click', function (e) {
-        verDocumentos('coches');
+        verDocumentos('ausencias');
         c.style.display = 'block';
         i.style.display = 'none';  
         a.style.display = 'none';  a.innerHTML = '';
@@ -162,7 +158,7 @@ function json2table(collection, jsonData, classes) {
     let botonInsertar = `
 <button class="insertar" title="Insertar" onclick="
     insertar('${collection}',  { 
-        ${colNames[0]}: document.getElementById('${collection}.${colNames[0]}').value,
+        ${colNames[0]}: document.getElementById('${collection}.${colNames[0]}').value
     }) ">
 <span>✏️</span>
 </button>
@@ -171,10 +167,7 @@ function json2table(collection, jsonData, classes) {
     let botonModificar = (fila) => `
 <button class="modificar" title="Modificar" onclick="
     modificar ('${collection}', '${fila._id}', {
-        ${colNames[0]}: document.getElementById('${fila._id}.${colNames[0]}').value, 
-        ${colNames[1]}: document.getElementById('${fila._id}.${colNames[1]}').value,
-        ${colNames[2]}: document.getElementById('${fila._id}.${colNames[2]}').value,
-        ${colNames[3]}: document.getElementById('${fila._id}.${colNames[3]}').value
+        ${colNames[0]}: document.getElementById('${fila._id}.${colNames[0]}').value
     }) ">
 <span>📝</span>
 </button>
@@ -198,20 +191,20 @@ function json2table(collection, jsonData, classes) {
     let celdaSinDatos = (campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
 <input id="${collection}.${campo}" 
-    ${colecciones[collection][campo] == 'number'
-            ? 'type="number" min="0" max="9999.99" step=".01" style="text-align: right;"'
-            : 'type="text" '}  >
+    ${colecciones[collection][campo] == 'date'
+            ? 'type="date" style="text-align: right;"'
+            : 'type="text"'}  >
 </td>`;
 
 
     let celdaConDatos = (documento, campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
 <input id="${documento._id}.${campo}" 
-    ${colecciones[collection][campo] == 'number'
-            ? 'type="number" min="0" max="9999.99" step=".01" style="text-align: right;" '
-            : 'type="text" '}  
-    value="${colecciones[collection][campo] == 'number'
-            ? documento[campo].toFixed(2)
+    ${colecciones[collection][campo] == 'date'
+            ? 'type="date" style="text-align: right;" '
+            : 'type="text"'}  
+    value="${colecciones[collection][campo] == 'date'
+            ? documento[campo]
             : documento[campo]}" 
     >
 </td>`;
