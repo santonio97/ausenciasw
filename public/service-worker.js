@@ -3,7 +3,7 @@
 
 
 // Nombre de la caché
-const CACHE_NAME = 'ausencias';
+const CACHE_NAME = 'ausenciasw';
 
 // Archivos necesarios para el funcionamiento offline
 const CACHE_ASSETS = [

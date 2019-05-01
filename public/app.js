@@ -1,6 +1,6 @@
 let colecciones = {
-    docente: { nombre: 'date' },
-    ausencias: { fecha: 'number'/*, hora: 'number', nombre: 'string', curso: 'string'*/ }
+    docentes: { "nombre del profesor": 'string' },
+    ausencias: { fecha: 'string', hora: 'number', nombre: 'string', curso: 'string' }
 };
 
 //
@@ -14,7 +14,7 @@ let index = `
 window.addEventListener('load', function () {
 
     let i = document.getElementById('inicio');
-    let a = document.getElementById('docente');
+    let a = document.getElementById('docentes');
     let c = document.getElementById('ausencias');
 
     i.innerHTML = index;
@@ -26,8 +26,8 @@ window.addEventListener('load', function () {
         c.style.display = 'none';  c.innerHTML = '';       
     });
 
-    document.getElementById('menu-docente').addEventListener('click', function (e) {
-        verDocumentos('docente');
+    document.getElementById('menu-docentes').addEventListener('click', function (e) {
+        verDocumentos('docentes');
         a.style.display = 'block';
         i.style.display = 'none';
         c.style.display = 'none';  c.innerHTML = '';       
@@ -158,7 +158,10 @@ function json2table(collection, jsonData, classes) {
     let botonInsertar = `
 <button class="insertar" title="Insertar" onclick="
     insertar('${collection}',  { 
-        ${colNames[0]}: document.getElementById('${collection}.${colNames[0]}').value
+        ${colNames[0]}: document.getElementById('${collection}.${colNames[0]}').value,
+        ${colNames[1]}: document.getElementById('${collection}.${colNames[1]}').value,
+        ${colNames[2]}: document.getElementById('${collection}.${colNames[2]}').value,
+        ${colNames[3]}: document.getElementById('${collection}.${colNames[3]}').value
     }) ">
 <span>✏️</span>
 </button>
@@ -167,7 +170,11 @@ function json2table(collection, jsonData, classes) {
     let botonModificar = (fila) => `
 <button class="modificar" title="Modificar" onclick="
     modificar ('${collection}', '${fila._id}', {
-        ${colNames[0]}: document.getElementById('${fila._id}.${colNames[0]}').value
+        ${colNames[0]}: document.getElementById('${fila._id}.${colNames[0]}').value,
+        ${colNames[1]}: document.getElementById('${fila._id}.${colNames[1]}').value,
+        ${colNames[2]}: document.getElementById('${fila._id}.${colNames[2]}').value,
+        ${colNames[3]}: document.getElementById('${fila._id}.${colNames[3]}').value
+        
     }) ">
 <span>📝</span>
 </button>
@@ -191,8 +198,8 @@ function json2table(collection, jsonData, classes) {
     let celdaSinDatos = (campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
 <input id="${collection}.${campo}" 
-    ${colecciones[collection][campo] == 'date'
-            ? 'type="date" style="text-align: right;"'
+    ${colecciones[collection][campo] == 'number'
+            ? 'type="number" min="0" max="9999.99" step=".01" style="text-align: right;"'
             : 'type="text"'}  >
 </td>`;
 
@@ -200,11 +207,11 @@ function json2table(collection, jsonData, classes) {
     let celdaConDatos = (documento, campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
 <input id="${documento._id}.${campo}" 
-    ${colecciones[collection][campo] == 'date'
-            ? 'type="date" style="text-align: right;" '
+    ${colecciones[collection][campo] == 'number'
+            ? 'type="number" min="0" max="9999.99" step=".01" style="text-align: right;" '
             : 'type="text"'}  
-    value="${colecciones[collection][campo] == 'date'
-            ? documento[campo]
+    value="${colecciones[collection][campo] == 'number'
+            ? documento[campo].toFixed(2)
             : documento[campo]}" 
     >
 </td>`;

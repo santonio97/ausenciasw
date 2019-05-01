@@ -4,14 +4,14 @@ const { Docente, Ausencias } = require('./models');
 const router = express.Router();
 
 // ver todos los profesores
-router.get('/docente', (req, res) => {
+router.get('/docentes', (req, res) => {
     Docente.find({}, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
 
-// ver todos las ausencias
+// ver todas las ausencias
 router.get('/ausencias', (req, res) => {
     Ausencias.find({}, (err, data) => {
         if (err) res.json({ error: err });
@@ -20,19 +20,21 @@ router.get('/ausencias', (req, res) => {
 });
 
 // ver un profesor
-router.get('/docente/:id', (req, res) => {
+router.get('/docentes/:id', (req, res) => {
     Docente.findOne({ _id: req.params.id }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
 
-router.get('/docente/:nombre', (req, res) => {
+/*
+router.get('/docentes/:nombre', (req, res) => {
     Docente.findOne({ nombre: req.params.nombre }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
+*/
 
 // ver una ausencia
 router.get('/ausencias/:id', (req, res) => {
@@ -42,12 +44,14 @@ router.get('/ausencias/:id', (req, res) => {
     });
 });
 
+/*
 router.get('/ausencias/:fecha/:hora', (req, res) => {
     Ausencias.findOne({ fecha: req.params.fecha, hora: req.params.hora }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
+*/
 
 // ---------------------------------------------------------------
 // Comentado porque no se va a usar (COMENTAR DESPUES ESTE BLOQUE)
@@ -56,7 +60,7 @@ router.get('/ausencias/:fecha/:hora', (req, res) => {
 
 
 // eliminar un profesor
-router.delete('/docente/:id', (req, res) => {
+router.delete('/docentes/:id', (req, res) => {
     Docente.findOneAndRemove({ _id: req.params.id }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
@@ -64,7 +68,7 @@ router.delete('/docente/:id', (req, res) => {
 });
 
 /*
-router.delete('/docente/:nombre', (req, res) => {
+router.delete('/docentes/:nombre', (req, res) => {
     Docente.findOneAndRemove({ nombre: req.params.nombre }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
@@ -90,7 +94,7 @@ router.delete('/ausencias/:fecha/:hora', (req, res) => {
 */
 
 // actualizar un profesor
-router.put('/docente/:id', (req, res) => {
+router.put('/docentes/:id', (req, res) => {
     Docente.findOneAndUpdate({ _id: req.params.id },
         { $set: { nombre: req.body.nombre
                 } 
@@ -102,7 +106,7 @@ router.put('/docente/:id', (req, res) => {
 });
 
 /*
-router.put('/docente/:nombre', (req, res) => {
+router.put('/docentes/:nombre', (req, res) => {
     Docente.findOneAndUpdate({ nombre: req.params.nombre },
         { $set: { nombre: req.body.nombre
                 } 
@@ -115,12 +119,12 @@ router.put('/docente/:nombre', (req, res) => {
 */
 
 // actualizar una ausencia
-router.put('/ausencias/:fecha/:hora', (req, res) => {
-    Ausencias.findOneAndUpdate({ hora: req.params.hora },
-        { $set: { fecha: req.body.fecha/*,
+router.put('/ausencias/:id', (req, res) => {
+    Ausencias.findOneAndUpdate({ _id: req.params.id },
+        { $set: { fecha: req.body.fecha,
                   hora: req.body.hora,
                   nombre: req.body.nombre,
-                  curso: req.body.curso*/
+                  curso: req.body.curso
                 } 
             },
         (err, data) => {
@@ -146,7 +150,7 @@ router.put('/ausencias/:fecha/:hora', (req, res) => {
 */
 
 // insertar un profesor
-router.post('/docente', (req, res) => {
+router.post('/docentes', (req, res) => {
     const docente = new Docente({
         nombre: req.body.nombre
     });
@@ -159,10 +163,10 @@ router.post('/docente', (req, res) => {
 // insertar una ausencia
 router.post('/ausencias', (req, res) => {
     const ausencias = new Ausencias({
-        fecha: req.body.fecha/*,
+        fecha: req.body.fecha,
         hora: req.body.hora,
         nombre: req.body.nombre,
-        curso: req.body.curso*/
+        curso: req.body.curso
     });
     ausencias.save((err, data) => {
         if (err) res.json({ error: err });

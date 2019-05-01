@@ -186,8 +186,8 @@ label#menu-inicio-label>span::after {
     content: " Inicio";
 }
 
-label#menu-docente-label>span::after {
-    content: " Docentes";
+label#menu-docentes-label>span::after {
+    content: " Profesores";
 }
 
 label#menu-ausencias-label>span::after {
@@ -294,7 +294,7 @@ caption {
     padding: 4px 8px;
 }
 
-.sort-table th.docente-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso*/ {
+.sort-table th.docentes-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso*/ {
     width: 40% !important;
 }
 
@@ -302,18 +302,18 @@ caption {
     width: 40% !important;
 }
 
-.sort-table th.docente-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre*/ {
+.sort-table th.docentes-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre*/ {
     font-weight: bold;
 }
 
-.sort-table th.docente-nombre small, .sort-table th.ausencias-fecha small/*, .sort-table th.ausencias-hora small, .sort-table th.ausencias.nombre small*/ {
+.sort-table th.docentes-nombre small, .sort-table th.ausencias-fecha small/*, .sort-table th.ausencias-hora small, .sort-table th.ausencias.nombre small*/ {
     font-weight: normal;
 }
 
 /* Responsive table full */
 
 @media (max-width: 767px) {
-    label#menu-inicio-label>span::after, label#menu-docente-label>span::after, label#menu-ausencias-label>span::after {
+    label#menu-inicio-label>span::after, label#menu-docentes-label>span::after, label#menu-ausencias-label>span::after {
         content: none;
     }
     table {
@@ -387,17 +387,17 @@ caption {
         margin: 3px 0;
         padding: 10px;
     }
-    .sort-table td.docente-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso*/ {
+    .sort-table td.docentes-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso*/ {
         width: 100px !important;
     }
-    .sort-table td.docente-nombre:before, .sort-table th.ausencias-fecha:before/*, .sort-table th.ausencias-hora:before, .sort-table th.ausencias.nombre:before*/ {
+    .sort-table td.docentes-nombre:before, .sort-table th.ausencias-fecha:before/*, .sort-table th.ausencias-hora:before, .sort-table th.ausencias.nombre:before*/ {
         display: none;
     }
-    .sort-table td.docente-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre*/ {
+    .sort-table td.docentes-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre*/ {
         letter-spacing: .03em;
         padding-left: 14px;
     }
-    .sort-table td.docente-nombre>input, .sort-table th.ausencias-fecha>input/*, .sort-table th.ausencias-hora>input, .sort-table th.ausencias.nombre>input*/ {
+    .sort-table td.docentes-nombre>input, .sort-table th.ausencias-fecha>input/*, .sort-table th.ausencias-hora>input, .sort-table th.ausencias.nombre>input*/ {
         font-weight: bold;
     }
 }
