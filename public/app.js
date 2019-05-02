@@ -1,6 +1,6 @@
 let colecciones = {
-    docentes: { "nombre del profesor": 'string' },
-    ausencias: { fecha: 'string', hora: 'number', nombre: 'string', curso: 'string' }
+    docentes: { profesor: 'string' },
+    ausencias: { fecha: 'date', hora: 'string', nombre: 'string', curso: 'string' }
 };
 
 //
@@ -198,8 +198,8 @@ function json2table(collection, jsonData, classes) {
     let celdaSinDatos = (campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
 <input id="${collection}.${campo}" 
-    ${colecciones[collection][campo] == 'number'
-            ? 'type="number" min="0" max="9999.99" step=".01" style="text-align: right;"'
+    ${colecciones[collection][campo] == 'date'
+            ? 'type="date" style="text-align: right;"'
             : 'type="text"'}  >
 </td>`;
 
@@ -207,11 +207,11 @@ function json2table(collection, jsonData, classes) {
     let celdaConDatos = (documento, campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
 <input id="${documento._id}.${campo}" 
-    ${colecciones[collection][campo] == 'number'
-            ? 'type="number" min="0" max="9999.99" step=".01" style="text-align: right;" '
+    ${colecciones[collection][campo] == 'date'
+            ? 'type="date" style="text-align: right;"'
             : 'type="text"'}  
-    value="${colecciones[collection][campo] == 'number'
-            ? documento[campo].toFixed(2)
+    value="${colecciones[collection][campo] == 'date'
+            ? documento[campo]
             : documento[campo]}" 
     >
 </td>`;

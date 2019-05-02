@@ -294,19 +294,19 @@ caption {
     padding: 4px 8px;
 }
 
-.sort-table th.docentes-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso*/ {
-    width: 40% !important;
+.sort-table th.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso {
+    width: 30% !important;
 }
 
 .sort-table th.operacion {
-    width: 40% !important;
+    width: 30% !important;
 }
 
-.sort-table th.docentes-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre*/ {
+.sort-table th.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre {
     font-weight: bold;
 }
 
-.sort-table th.docentes-nombre small, .sort-table th.ausencias-fecha small/*, .sort-table th.ausencias-hora small, .sort-table th.ausencias.nombre small*/ {
+.sort-table th.docentes-nombre small, .sort-table th.ausencias-fecha small, .sort-table th.ausencias-hora small, .sort-table th.ausencias.nombre small {
     font-weight: normal;
 }
 
@@ -387,17 +387,17 @@ caption {
         margin: 3px 0;
         padding: 10px;
     }
-    .sort-table td.docentes-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso*/ {
+    .sort-table td.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso {
         width: 100px !important;
     }
-    .sort-table td.docentes-nombre:before, .sort-table th.ausencias-fecha:before/*, .sort-table th.ausencias-hora:before, .sort-table th.ausencias.nombre:before*/ {
+    .sort-table td.docentes-nombre:before, .sort-table th.ausencias-fecha:before, .sort-table th.ausencias-hora:before, .sort-table th.ausencias.nombre:before {
         display: none;
     }
-    .sort-table td.docentes-nombre, .sort-table th.ausencias-fecha/*, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre*/ {
+    .sort-table td.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre {
         letter-spacing: .03em;
         padding-left: 14px;
     }
-    .sort-table td.docentes-nombre>input, .sort-table th.ausencias-fecha>input/*, .sort-table th.ausencias-hora>input, .sort-table th.ausencias.nombre>input*/ {
+    .sort-table td.docentes-nombre>input, .sort-table th.ausencias-fecha>input, .sort-table th.ausencias-hora>input, .sort-table th.ausencias.nombre>input {
         font-weight: bold;
     }
 }
