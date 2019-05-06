@@ -200,7 +200,7 @@ function json2table(collection, jsonData, classes) {
 <input id="${collection}.${campo}" 
     ${colecciones[collection][campo] == 'date'
             ? 'type="date" style="text-align: right;"'
-            : 'type="text"'}  >
+            : 'type="text" '}  >
 </td>`;
 
 
@@ -209,7 +209,7 @@ function json2table(collection, jsonData, classes) {
 <input id="${documento._id}.${campo}" 
     ${colecciones[collection][campo] == 'date'
             ? 'type="date" style="text-align: right;"'
-            : 'type="text"'}  
+            : 'type="text" '}  
     value="${colecciones[collection][campo] == 'date'
             ? documento[campo]
             : documento[campo]}" 

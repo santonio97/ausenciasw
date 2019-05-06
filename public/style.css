@@ -94,7 +94,7 @@ div#OK, div#KO {
 }
 
 input {
-    _float: right;
+    _float: left;
     padding: 10px;
     font-size: 14px;
     color: black;
@@ -294,12 +294,16 @@ caption {
     padding: 4px 8px;
 }
 
-.sort-table th.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso {
+.sort-table th.docentes-nombre {
+    width: 60% !important;
+}
+
+/*.sort-table th.docentes-nombre,*/ .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre, .sort-table th.ausencias.curso {
     width: 30% !important;
 }
 
 .sort-table th.operacion {
-    width: 30% !important;
+    width: 30% ;
 }
 
 .sort-table th.docentes-nombre, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.ausencias.nombre {
@@ -366,7 +370,7 @@ caption {
         font-weight: normal;
         margin-left: -100%;
         text-transform: uppercase;
-        width: 100%;
+        width: 60%;
         white-space: nowrap;
     }
     .sort-table thead tr {

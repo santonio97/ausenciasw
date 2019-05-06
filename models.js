@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Docente = mongoose.model('docentes', {
-    nombre: String
+    profesor: String
 });
 
 const Ausencias = mongoose.model('ausencias', {

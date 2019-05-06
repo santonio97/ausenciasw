@@ -20,21 +20,21 @@ router.get('/ausencias', (req, res) => {
 });
 
 // ver un profesor
-router.get('/docentes/:id', (req, res) => {
+/*router.get('/docentes/:id', (req, res) => {
     Docente.findOne({ _id: req.params.id }, (err, data) => {
+        if (err) res.json({ error: err });
+        else res.json(data);
+    });
+});*/
+
+
+router.get('/docentes/:profesor', (req, res) => {
+    Docente.findOne({ _profesor: req.params.profesor }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
 
-/*
-router.get('/docentes/:nombre', (req, res) => {
-    Docente.findOne({ nombre: req.params.nombre }, (err, data) => {
-        if (err) res.json({ error: err });
-        else res.json(data);
-    });
-});
-*/
 
 // ver una ausencia
 router.get('/ausencias/:id', (req, res) => {
@@ -68,8 +68,8 @@ router.delete('/docentes/:id', (req, res) => {
 });
 
 /*
-router.delete('/docentes/:nombre', (req, res) => {
-    Docente.findOneAndRemove({ nombre: req.params.nombre }, (err, data) => {
+router.delete('/docentes/:profesor', (req, res) => {
+    Docente.findOneAndRemove({ profesor: req.params.profesor }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
@@ -96,7 +96,7 @@ router.delete('/ausencias/:fecha/:hora', (req, res) => {
 // actualizar un profesor
 router.put('/docentes/:id', (req, res) => {
     Docente.findOneAndUpdate({ _id: req.params.id },
-        { $set: { nombre: req.body.nombre
+        { $set: { profesor: req.body.profesor
                 } 
             },
         (err, data) => {
@@ -106,9 +106,9 @@ router.put('/docentes/:id', (req, res) => {
 });
 
 /*
-router.put('/docentes/:nombre', (req, res) => {
-    Docente.findOneAndUpdate({ nombre: req.params.nombre },
-        { $set: { nombre: req.body.nombre
+router.put('/docentes/:profesor', (req, res) => {
+    Docente.findOneAndUpdate({ profesor: req.params.profesor },
+        { $set: { profesor: req.body.profesor
                 } 
             },
         (err, data) => {
@@ -152,7 +152,7 @@ router.put('/ausencias/:fecha/:hora', (req, res) => {
 // insertar un profesor
 router.post('/docentes', (req, res) => {
     const docente = new Docente({
-        nombre: req.body.nombre
+        profesor: req.body.profesor
     });
     docente.save((err, data) => {
         if (err) res.json({ error: err });
