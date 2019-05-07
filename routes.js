@@ -46,7 +46,7 @@ router.get('/ausencias/:id', (req, res) => {
 
 /*
 router.get('/ausencias/:fecha/:hora', (req, res) => {
-    Ausencias.findOne({ fecha: req.params.fecha, hora: req.params.hora }, (err, data) => {
+    Ausencias.find({ fecha: req.params.fecha, hora: req.params.hora }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
