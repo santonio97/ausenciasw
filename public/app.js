@@ -1,15 +1,15 @@
 let colecciones = {
     docentes: { profesor: 'string' },
-    ausencias: { fecha: 'date', hora: 'string', nombre: 'string', curso: 'string' }
+    ausencias: { fecha: 'string', hora: 'number', nombre: 'string', curso: 'string' }
 };
-
-//
 
 let index = `
      <div style="margin: 30px">
          <h1>Ausencias del profesorado</h1>
          <h2>SPA</h2>
      </div>`;
+
+    docentes
 
 window.addEventListener('load', function () {
 
@@ -22,22 +22,22 @@ window.addEventListener('load', function () {
 
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
         i.style.display = 'block';
-        a.style.display = 'none';  a.innerHTML = '';
-        c.style.display = 'none';  c.innerHTML = '';       
+        a.style.display = 'none'; a.innerHTML = '';
+        c.style.display = 'none'; c.innerHTML = '';
     });
 
     document.getElementById('menu-docentes').addEventListener('click', function (e) {
         verDocumentos('docentes');
         a.style.display = 'block';
         i.style.display = 'none';
-        c.style.display = 'none';  c.innerHTML = '';       
+        c.style.display = 'none'; c.innerHTML = '';
     });
 
     document.getElementById('menu-ausencias').addEventListener('click', function (e) {
         verDocumentos('ausencias');
         c.style.display = 'block';
-        i.style.display = 'none';  
-        a.style.display = 'none';  a.innerHTML = '';
+        i.style.display = 'none';
+        a.style.display = 'none'; a.innerHTML = '';
     });
 
 });
@@ -62,7 +62,7 @@ function verDocumentos(coleccion) {
 
 function insertar(coleccion, objeto) {
     if (Object.values(objeto).every(x => (x !== null && x !== ''))) {
-    
+
         fetch(`/api/${coleccion}`,
             {
                 method: 'POST',
@@ -194,28 +194,27 @@ function json2table(collection, jsonData, classes) {
     let celdaModificarEliminar = (row) => `
 <td data-label="operacion" class="operacion">${botonModificar(row)} ${botonEliminar(row)}</td>`;
 
-
     let celdaSinDatos = (campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
 <input id="${collection}.${campo}" 
-    ${colecciones[collection][campo] == 'date'
-            ? 'type="date" style="text-align: right;"'
+    ${colecciones[collection][campo] == 'number'
+            ? 'type="number" min="1" max="6" placeholder="de 1 a 6 " '
             : 'type="text" '}  >
 </td>`;
+
 
 
     let celdaConDatos = (documento, campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
 <input id="${documento._id}.${campo}" 
-    ${colecciones[collection][campo] == 'date'
-            ? 'type="date" style="text-align: right;"'
+    ${colecciones[collection][campo] == 'number'
+            ? 'type="number" min="1" max="6"'
             : 'type="text" '}  
-    value="${colecciones[collection][campo] == 'date'
+    value="${colecciones[collection][campo] == 'number'
             ? documento[campo]
             : documento[campo]}" 
     >
 </td>`;
-
 
     let table = `
 <table id="content-table" class="${classes}">

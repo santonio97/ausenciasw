@@ -5,8 +5,8 @@ const Docente = mongoose.model('docentes', {
 });
 
 const Ausencias = mongoose.model('ausencias', {
-    fecha: Date,
-    hora: String,
+    fecha: String,
+    hora: Number,
     nombre: String,
     curso: String
 });

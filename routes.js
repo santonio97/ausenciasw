@@ -29,7 +29,7 @@ router.get('/ausencias', (req, res) => {
 
 
 router.get('/docentes/:profesor', (req, res) => {
-    Docente.findOne({ _profesor: req.params.profesor }, (err, data) => {
+    Docente.findOne({ profesor: req.params.profesor }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
@@ -45,8 +45,8 @@ router.get('/ausencias/:id', (req, res) => {
 });
 
 /*
-router.get('/ausencias/:fecha/:hora', (req, res) => {
-    Ausencias.find({ fecha: req.params.fecha, hora: req.params.hora }, (err, data) => {
+router.get('/ausencias/:fecha', (req, res) => {
+    Ausencias.find({ fecha: req.params.fecha }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
@@ -85,8 +85,8 @@ router.delete('/ausencias/:id', (req, res) => {
 });
 
 /*
-router.delete('/ausencias/:fecha/:hora', (req, res) => {
-    Ausencias.findOneAndRemove({ fecha: req.params.fecha, hora: req.params.hora }, (err, data) => {
+router.delete('/ausencias/:fecha', (req, res) => {
+    Ausencias.findOneAndRemove({ fecha: req.params.fecha }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
@@ -134,8 +134,8 @@ router.put('/ausencias/:id', (req, res) => {
 });
 
 /*
-router.put('/ausencias/:fecha/:hora', (req, res) => {
-    Ausencias.findOneAndUpdate({ hora: req.params.hora },
+router.put('/ausencias/:fecha/', (req, res) => {
+    Ausencias.findOneAndUpdate({ fecha: req.params.fecha },
         { $set: { fecha: req.body.fecha//,
                   //hora: req.body.hora,
                   //nombre: req.body.nombre,
