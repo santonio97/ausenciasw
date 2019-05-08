@@ -5,6 +5,5 @@ Proyecto Final del Curso (Desarrollo de Horario de Ausencias de Profesorado)
 
 <br/>
 
-<h2>Aplicación creada con Express + NodeJS + MongoDB</h2>
-<h3>sdfdsfsdfsdfsd</h3>
-<p></p>
+<h3>Aplicación creada con Express + NodeJS + MongoDB</h3>
+<p>Curso 2018/2019, I.E.S. Luis Vélez de Guevara. Écija, Sevilla</p>
