@@ -5,4 +5,4 @@ Proyecto Final del Curso (Desarrollo aplicación de Horario de Ausencias del Pro
 <hr/>
 <h3>Aplicación creada con Express + NodeJS + MongoDB</h3>
 <p>Curso 2018/2019, I.E.S. Luis Vélez de Guevara. Écija, Sevilla</p>
-
+<p>Copyright &copy; José A. Márquez</p>
