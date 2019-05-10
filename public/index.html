@@ -4,21 +4,29 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="description" content="Simple PWA Example">
+    <meta name="description" content="Aplicación PWA">
     <meta name="keywords" content="PWA,NodeJS,MongoDB,Express,Example,JavaScript">
     <meta name="author" content="José Antonio Márquez">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#4285f4">
 
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="manifest" href="/manifest.json" />
-    
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Tienda">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/icon-152x152.png">
+    <meta name="msapplication-TileImage" content="/images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+
     <title>Ausencias del Profesorado</title>
 </head>
 
-<body style = "background-size:100% 100%;">
+<body style="background-size:100% 100%;">
 
     <nav style="border: 2px solid lightblue;">
         <input name="menu-opcion" type="radio" id="menu-inicio" checked>
@@ -37,43 +45,21 @@
         <div class="seccion" id="ausencias"></div>
     </main>
 
-    <p id="demo"></p>
-
-    <div id="OK"> 😊 </div>
-    <div id="KO"> 😟 </div>
+    <div id="OK"> ✔️ </div>
+    <div id="KO"> ❎ </div>
 
     <script>
         // Si está soportado serviceWorker por el navegador
         if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker
-              .register('./service-worker.js')
-              .then(reg => console.log('[Service Worker] * Registrado.'))
-              .catch(err => console.log(`[Service Worker] * Error: ${err}`));
-          });
+            window.addEventListener('load', () => {
+                navigator.serviceWorker
+                    .register('./service-worker.js')
+                    .then(reg => console.log('[Service Worker] * Registrado.'))
+                    .catch(err => console.log(`[Service Worker] * Error: ${err}`));
+            });
         }
-      </script>
+    </script>
 
-<script>
-  /*function myFunction() {
-  var MongoClient = require("mongodb").MongoClient;
-var url = "mongodb://localhost:27017/ausenciasw";
-
-MongoClient.connect(url, function(err, db) {
-if (err) throw err;
-var dbo = db.db('ausenciasw');
-//Find all documents in the customers collection:
-db.collection('docentes').find({}).toArray(function(err, result) {
-  if (err) throw err;
-  console.log(result);
-  db.close();
-});
-});
-}
-
-document.getElementById("demo").innerHTML = myFunction();*/
-  </script>
-    
     <script src="service-worker.js"></script> <!-- Gestión de eventos del ServiceWorker -->
     <script src="app.js"></script> <!-- Interfaz de interacción con el usuario -->
 

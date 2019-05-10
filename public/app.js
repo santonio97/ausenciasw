@@ -9,8 +9,6 @@ let index = `
          <h2>SPA</h2>
      </div>`;
 
-    docentes
-
 window.addEventListener('load', function () {
 
     let i = document.getElementById('inicio');
@@ -21,6 +19,7 @@ window.addEventListener('load', function () {
     i.style.display = 'block';
 
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
+        //verAusencias('inicio');
         i.style.display = 'block';
         a.style.display = 'none'; a.innerHTML = '';
         c.style.display = 'none'; c.innerHTML = '';
@@ -46,17 +45,17 @@ window.addEventListener('load', function () {
  OPERACIONES CRUD 
 --------------------*/
 
-function verAusencias() {
-    fetch(`index`,
+/*function verAusencias(coleccion) {
+    fetch(`/api/${coleccion}`,
         {
             method: 'GET'
         })
         .then(res => res.json())
         .then(data => {
-            document.getElementById(`index`).innerHTML
-                = data
+            document.getElementById(`${coleccion}`).innerHTML
+                = json2table(coleccion, data, "table-responsive-full sort-table")
         })
-}
+}*/
 
 function verDocumentos(coleccion) {
     fetch(`/api/${coleccion}`,
@@ -69,7 +68,6 @@ function verDocumentos(coleccion) {
                 = json2table(coleccion, data, "table-responsive-full sort-table")
         })
 }
-
 
 function insertar(coleccion, objeto) {
     if (Object.values(objeto).every(x => (x !== null && x !== ''))) {
@@ -93,7 +91,6 @@ function insertar(coleccion, objeto) {
             });
     }
 }
-
 
 function modificar(coleccion, id, objeto) {
     // let objeto = { nombre: campo1, precio: campo2 };
@@ -155,11 +152,11 @@ function json2table(collection, jsonData, classes) {
 <div class="sort-table-arrows">
     <button class="button" title="ascendente" onclick="
         sort(true, '${collection}-${campo}', 'content-table')">
-    <span>⬆️</span>
+    <span>🔼</span>
     </button>
     <button class="button" title="descendente" onclick="
         sort(false, '${collection}-${campo}', 'content-table')">
-    <span>⬇️</span>
+    <span>🔽</span>
     </button>
 </div>`;
 
@@ -258,7 +255,7 @@ function sort(ascending, columnClassName, tableId) {
             let nextRow = rows[r + 1];
             let value = row.getElementsByClassName(columnClassName)[0].childNodes[1].value;
             let nextValue = nextRow.getElementsByClassName(columnClassName)[0].childNodes[1].value;
-            value = value.replace(',', ' '); // in case a comma is used in float number
+            value = value.replace(',', ''); // in case a comma is used in float number
             nextValue = nextValue.replace(',', '');
             if (!isNaN(value)) {
                 value = parseFloat(value);

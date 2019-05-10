@@ -27,14 +27,12 @@ router.get('/ausencias', (req, res) => {
     });
 });*/
 
-
 router.get('/docentes/:profesor', (req, res) => {
     Docente.findOne({ profesor: req.params.profesor }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
-
 
 // ver una ausencia
 router.get('/ausencias/:id', (req, res) => {
