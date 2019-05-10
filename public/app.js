@@ -46,6 +46,18 @@ window.addEventListener('load', function () {
  OPERACIONES CRUD 
 --------------------*/
 
+function verAusencias() {
+    fetch(`index`,
+        {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById(`index`).innerHTML
+                = data
+        })
+}
+
 function verDocumentos(coleccion) {
     fetch(`/api/${coleccion}`,
         {
@@ -56,7 +68,6 @@ function verDocumentos(coleccion) {
             document.getElementById(`${coleccion}`).innerHTML
                 = json2table(coleccion, data, "table-responsive-full sort-table")
         })
-
 }
 
 
@@ -80,7 +91,6 @@ function insertar(coleccion, objeto) {
                 KO.style.display = 'block';
                 setTimeout(() => KO.style.display = 'none', 1500);
             });
-
     }
 }
 
@@ -105,7 +115,6 @@ function modificar(coleccion, id, objeto) {
             KO.style.display = 'block';
             setTimeout(() => KO.style.display = 'none', 1500);
         });
-
 }
 
 function eliminar(coleccion, id) {
@@ -134,7 +143,6 @@ function eliminar(coleccion, id) {
 function entradaOK() {
     return true;
 }
-
 
 // Función para CONVERTIR JSON A TABLA HTML
 function json2table(collection, jsonData, classes) {
@@ -194,7 +202,6 @@ function json2table(collection, jsonData, classes) {
     let celdaModificarEliminar = (row) => `
 <td data-label="operacion" class="operacion">${botonModificar(row)} ${botonEliminar(row)}</td>`;
 
-
     let celdaSinDatos = (campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
 <input id="${collection}.${campo}" 
@@ -202,7 +209,6 @@ function json2table(collection, jsonData, classes) {
             ? 'type="date" style="text-align: right;"'
             : 'type="text" '}  >
 </td>`;
-
 
     let celdaConDatos = (documento, campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
@@ -215,7 +221,6 @@ function json2table(collection, jsonData, classes) {
             : documento[campo]}" 
     >
 </td>`;
-
 
     let table = `
 <table id="content-table" class="${classes}">
@@ -240,7 +245,6 @@ function json2table(collection, jsonData, classes) {
 
     return table;
 }
-
 
 // Función para ORDENAR POR COLUMNAS (https://codepen.io/mlegakis/pen/jBYPGr)
 function sort(ascending, columnClassName, tableId) {
