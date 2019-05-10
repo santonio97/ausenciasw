@@ -1,4 +1,4 @@
-<h1>Proyecto</h1>
+<h1>Proyecto Ausencias Profesorado</h1>
 Proyecto Final del Curso (Desarrollo aplicación de Horario de Ausencias del Profesorado)
 <h3>Aplicación PWA + FullStack MEN (MongoDB + Express + Nodejs).</h3>
 <p>Desplegada en <a href="https://herokuapp.com/">Heroku</a>, aunque eso lo haré al terminar de desarrollarla en local, para luego subir los archivos a Heroku.</p>
