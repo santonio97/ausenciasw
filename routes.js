@@ -94,9 +94,14 @@ router.delete('/ausencias/:fecha', (req, res) => {
 // actualizar un profesor
 router.put('/docentes/:id', (req, res) => {
     Docente.findOneAndUpdate({ _id: req.params.id },
-        { $set: { profesor: req.body.profesor
-                } 
-            },
+        {
+            $set: {
+                profesor: req.body.profesor,
+                alias: req.body.alias,
+                email: req.body.email,
+                departamento: req.body.departamento
+            }
+        },
         (err, data) => {
             if (err) res.json({ error: err });
             else res.json(data);
@@ -106,9 +111,13 @@ router.put('/docentes/:id', (req, res) => {
 /*
 router.put('/docentes/:profesor', (req, res) => {
     Docente.findOneAndUpdate({ profesor: req.params.profesor },
-        { $set: { profesor: req.body.profesor
-                } 
-            },
+        { $set: { 
+                profesor: req.body.profesor,
+                alias: req.body.alias,
+                email: req.body.email,
+                departamento: req.body.departamento
+            } 
+        },
         (err, data) => {
             if (err) res.json({ error: err });
             else res.json(data);
@@ -119,12 +128,14 @@ router.put('/docentes/:profesor', (req, res) => {
 // actualizar una ausencia
 router.put('/ausencias/:id', (req, res) => {
     Ausencias.findOneAndUpdate({ _id: req.params.id },
-        { $set: { fecha: req.body.fecha,
-                  hora: req.body.hora,
-                  nombre: req.body.nombre,
-                  curso: req.body.curso
-                } 
-            },
+        {
+            $set: {
+                fecha: req.body.fecha,
+                hora: req.body.hora,
+                nombre: req.body.nombre,
+                curso: req.body.curso
+            }
+        },
         (err, data) => {
             if (err) res.json({ error: err });
             else res.json(data);
@@ -150,7 +161,10 @@ router.put('/ausencias/:fecha/', (req, res) => {
 // insertar un profesor
 router.post('/docentes', (req, res) => {
     const docente = new Docente({
-        profesor: req.body.profesor
+        profesor: req.body.profesor,
+        alias: req.body.alias,
+        email: req.body.email,
+        departamento: req.body.departamento
     });
     docente.save((err, data) => {
         if (err) res.json({ error: err });

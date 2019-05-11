@@ -1,13 +1,13 @@
 let colecciones = {
-    docentes: { profesor: 'string' },
-    ausencias: { fecha: 'string', hora: 'number', nombre: 'string', curso: 'string' }
+    docentes: { profesor: 'string', alias: 'string', email: 'string', departamento: 'string' },
+    ausencias: { fecha: 'string', hora : 'number', nombre: 'string', curso: 'string' }
 };
 
 let index = `
-     <div style="margin: 30px">
-         <h1>Ausencias del profesorado</h1>
-         <h2>SPA</h2>
-     </div>`;
+<div style="margin: 30px">
+    <h1>Ausencias del profesorado</h1>
+    <h2>SPA</h2>
+</div>`;
 
 window.addEventListener('load', function () {
 
@@ -19,7 +19,6 @@ window.addEventListener('load', function () {
     i.style.display = 'block';
 
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
-        //verAusencias('inicio');
         i.style.display = 'block';
         a.style.display = 'none'; a.innerHTML = '';
         c.style.display = 'none'; c.innerHTML = '';
@@ -148,7 +147,7 @@ function json2table(collection, jsonData, classes) {
 
     let colNames = Object.keys(colecciones[collection]);
 
-    let botonesOrdenar = (campo) => `
+    /*let botonesOrdenar = (campo) => `
 <div class="sort-table-arrows">
     <button class="button" title="ascendente" onclick="
         sort(true, '${collection}-${campo}', 'content-table')">
@@ -158,7 +157,7 @@ function json2table(collection, jsonData, classes) {
         sort(false, '${collection}-${campo}', 'content-table')">
     <span>🔽</span>
     </button>
-</div>`;
+</div>`;*/
 
     let botonInsertar = `
 <button class="insertar" title="Insertar" onclick="
@@ -181,7 +180,7 @@ function json2table(collection, jsonData, classes) {
         ${colNames[3]}: document.getElementById('${fila._id}.${colNames[3]}').value
         
     }) ">
-<span>📝</span>
+<span>🔄</span>
 </button>
 `;
 
@@ -189,9 +188,14 @@ function json2table(collection, jsonData, classes) {
 <button class="eliminar" title="Eliminar" onclick="
     eliminar('${collection}', '${fila._id}'); 
     document.getElementById('${fila._id}').remove()">
-<span><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/158/heavy-multiplication-x_2716.png" width="15" height="15"/></span>
+<span>🗑️</span>
 </button>
 `;
+
+    // función para hacer que la primera letra del campo sea mayúscula y las demas minúsculas
+    String.prototype.capitalize = function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
 
     let celdaInsertar = `
 <td data-label="operacion" class="operacion">${botonInsertar}</td>`;
@@ -201,14 +205,16 @@ function json2table(collection, jsonData, classes) {
 
     let celdaSinDatos = (campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
+<span style="color:black; font-weight:bold; font-size:1em;">${campo.toUpperCase()} </span>
 <input id="${collection}.${campo}" 
     ${colecciones[collection][campo] == 'number'
-            ? 'type="number" min="1" max="6" placeholder="de 1 a 6 " '
-            : 'type="text" '}  >
+            ? `type="number" min="1" max="6" placeholder=${campo} `
+            : `type="text" placeholder=${campo}`}  >
 </td>`;
 
     let celdaConDatos = (documento, campo) => `
 <td data-label="${collection}-${campo}" class="${collection}-${campo}">
+<span style="color:black; font-weight:bold; font-size:1em;">${campo.capitalize()} </span>
 <input id="${documento._id}.${campo}" 
     ${colecciones[collection][campo] == 'number'
             ? 'type="number" min="1" max="6"'
@@ -223,7 +229,7 @@ function json2table(collection, jsonData, classes) {
 <table id="content-table" class="${classes}">
 <thead>
     <tr> 
-    ${colNames.map(colName => `<th class="${collection}-${colName}"> ${colName} ${botonesOrdenar(colName)} </th>`).join(' ')}
+    ${colNames.map(colName => `<th class="${collection}-${colName}"> ${colName} </th>`).join(' ')}
     <th class="operacion">Operación</th> 
     </tr>
 </thead>
@@ -255,7 +261,7 @@ function sort(ascending, columnClassName, tableId) {
             let nextRow = rows[r + 1];
             let value = row.getElementsByClassName(columnClassName)[0].childNodes[1].value;
             let nextValue = nextRow.getElementsByClassName(columnClassName)[0].childNodes[1].value;
-            value = value.replace(',', ''); // in case a comma is used in float number
+            value = value.replace(',', ' '); // in case a comma is used in float number
             nextValue = nextValue.replace(',', '');
             if (!isNaN(value)) {
                 value = parseFloat(value);

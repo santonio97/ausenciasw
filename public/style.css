@@ -136,14 +136,14 @@ button.insertar {
 }
 
 button.modificar {
-    border: 1px solid #7700a6;
-    color: #7700a6;
+    border: 1px solid blue;
+    color: blue;
     content: " Modificar";
 }
 
 button.eliminar {
-    border: 1px solid rgb(17, 0, 255);
-    color: rgb(17, 0, 255);
+    border: 1px solid red;
+    color: red;
     content: " Eliminar";
 }
 
@@ -348,17 +348,20 @@ caption {
         color: hsl(0, 0%, 40%);
     }
     .table-responsive-full td:first-child {
-        border-top: 1px solid #bfbfbf;
-        border-bottom: 3px solid #0085a6;
+        border-top: 3px solid #0085a6;
         border-radius: 4px 4px 0 0;
         color: #000;
-        font-size: 1.11111em;
+        font-size: 1em;
         font-weight: bold;
+    }
+    .table-responsive-full td:last-child {
+        border-bottom: 3px solid #0085a6;
+        border-radius: 0 0 4px 4px;
     }
     .table-responsive-full td:before {
         content: attr(data-label);
         display: inline-block;
-        color: hsl(0, 0%, 60%);
+        color: black;
         font-size: 14px;
         font-weight: normal;
         margin-left: -100%;
@@ -384,7 +387,7 @@ caption {
         margin: 3px 0;
         padding: 10px;
     }
-    .sort-table th.docentes-profesor, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.operacion {
+    .sort-table th.docentes-profesor, .sort-table th.docentes-alias, .sort-table th.ausencias-fecha, .sort-table th.ausencias-hora, .sort-table th.operacion {
         width: 100px !important;
     }
     .sort-table td.docentes-profesor:before, .sort-table td.ausencias-fecha:before {
@@ -394,19 +397,20 @@ caption {
         letter-spacing: .03em;
         padding-left: 14px;
     }
-    .sort-table td.docentes-profesor>input .sort-table td.ausencias-fecha>input {
-        font-weight: bold;
-    }
-    .dale {
-        display: block;
-        text-transform: uppercase;
-        font-weight: normal;
-    }
 }
 
 @media (max-width:1024px) {
-    button.insertar>span::after, button.modificar>span::after, button.eliminar>span::after {
-        content: none;
+    button.insertar>span::after {
+        font-size: 0.9em;
+        content: " Insertar";
+    }
+    button.modificar>span::after {
+        font-size: 0.9em;
+        content: " Modificar";
+    }
+    button.eliminar>span::after {
+        font-size: 0.9em;
+        content: " Eliminar";
     }
     table {
         font-size: .944444em;
@@ -424,3 +428,35 @@ caption {
         bottom: 0;
     }
 }
+
+#button {
+    display: inline-block;
+    background-color: #FF9800;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    margin: 30px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s;
+    z-index: 1000;
+  }
+  #button:hover {
+    cursor: pointer;
+    background-color: #333;
+  }
+  #button:active {
+    background-color: #555;
+  }
+
+  #button::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #fff;
+  }

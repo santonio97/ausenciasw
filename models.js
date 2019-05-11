@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const Docente = mongoose.model('docentes', {
-    profesor: String
+    profesor: String,
+    alias: String,
+    email: String,
+    departamento: String
 });
 
 const Ausencias = mongoose.model('ausencias', {

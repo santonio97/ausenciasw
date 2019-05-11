@@ -7,7 +7,7 @@
     <meta name="description" content="Aplicación PWA">
     <meta name="keywords" content="PWA,NodeJS,MongoDB,Express,Example,JavaScript">
     <meta name="author" content="José Antonio Márquez">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#4285f4">
@@ -15,18 +15,50 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="manifest" href="/manifest.json" />
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Tienda">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/icon-152x152.png">
-    <meta name="msapplication-TileImage" content="/images/icons/icon-144x144.png">
-    <meta name="msapplication-TileColor" content="#2F3BA2">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <title>Ausencias del Profesorado</title>
+
+    <script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
+
+    <script>
+
+        jQuery(document).ready(function() {
+          
+          var btn = $('#button');
+        
+          $(window).scroll(function() {
+            if ($(window).scrollTop() > 300) {
+              btn.addClass('show');
+            } else {
+              btn.removeClass('show');
+            }
+          });
+        
+          btn.on('click', function(e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop:0}, '300');
+          });
+        
+        });
+
+        var btn = $('#button');
+
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 300) {
+      btn.addClass('show');
+    } else {
+      btn.removeClass('show');
+    }
+  });
+  
+        
+        </script>
 </head>
 
 <body style="background-size:100% 100%;">
+
+    <a id="button"></a>
 
     <nav style="border: 2px solid lightblue;">
         <input name="menu-opcion" type="radio" id="menu-inicio" checked>
