@@ -1,13 +1,45 @@
 let colecciones = {
     docentes: { profesor: 'string', alias: 'string', email: 'string', departamento: 'string' },
-    ausencias: { fecha: 'string', hora : 'number', nombre: 'string', curso: 'string' }
+    ausencias: { fecha: 'string', hora: 'number', nombre: 'string', curso: 'string' }
 };
 
 let index = `
-<div style="margin: 30px">
-    <h1>Ausencias del profesorado</h1>
-    <h2>SPA</h2>
-</div>`;
+    <style>
+        img { 
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, #33ccff 0%, #99ff66 100%);
+            color: black;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+
+    <div style="margin: 10px 30px 30px; color: black; font-weight: normal">
+        <img src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" 
+        alt="logo" width="100" height="100"/>
+        
+        <h2>Proyecto Ausencias Profesorado</h2>
+
+        Proyecto Final del Curso (Desarrollo aplicación de Horario de Ausencias del Profesorado)
+
+        <p>Aplicación PWA + FullStack MEN (MongoDB + Express + Nodejs).</p>
+        <p>Desplegada en <a href="https://herokuapp.com/" target="_blank">Heroku</a>.</p>
+        <p>2º CFGS Desarrollo de Aplicaciones de Web | Curso 2018/2019, I.E.S. Luis Vélez de Guevara. Écija, Sevilla</p>
+        <p>(Recomendado instalar si se usa Chrome en el dispositivo)</p>
+    </div>
+    
+    <div class="footer">
+        <p>Copyright &copy; JAMP</p>
+    </div>`;
 
 window.addEventListener('load', function () {
 

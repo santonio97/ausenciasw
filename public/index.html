@@ -15,50 +15,54 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <title>Ausencias del Profesorado</title>
 
-    <script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
+    <style>
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            padding: 0px;
+            border-radius: 4px;
+            font-size: 45px;
+        }
+    </style>
 
     <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
 
-        jQuery(document).ready(function() {
-          
-          var btn = $('#button');
-        
-          $(window).scroll(function() {
-            if ($(window).scrollTop() > 300) {
-              btn.addClass('show');
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+
             } else {
-              btn.removeClass('show');
+                document.getElementById("myBtn").style.display = "none";
             }
-          });
-        
-          btn.on('click', function(e) {
-            e.preventDefault();
-            $('html, body').animate({scrollTop:0}, '300');
-          });
-        
-        });
+        }
 
-        var btn = $('#button');
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
 
-  $(window).scroll(function() {
-    if ($(window).scrollTop() > 300) {
-      btn.addClass('show');
-    } else {
-      btn.removeClass('show');
-    }
-  });
-  
-        
-        </script>
+            window.scrollTo({
+                top: 0.1,
+                left: 100,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </head>
 
 <body style="background-size:100% 100%;">
-
-    <a id="button"></a>
+    <button onclick="topFunction()" id="myBtn" title="Ir arriba">⬆️</button>
 
     <nav style="border: 2px solid lightblue;">
         <input name="menu-opcion" type="radio" id="menu-inicio" checked>
