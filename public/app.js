@@ -5,6 +5,10 @@ let colecciones = {
 
 let index = `
     <style>
+        #div {
+            text-align: justify
+        }
+
         img { 
             display: block;
             margin-left: auto;
@@ -16,29 +20,24 @@ let index = `
             left: 0;
             bottom: 0;
             width: 100%;
-            background: linear-gradient(to bottom, #33ccff 0%, #99ff66 100%);
+            background: linear-gradient(to bottom, #ffffff 0%, #3399ff 100%);
             color: black;
             font-weight: bold;
             text-align: center;
         }
     </style>
 
-    <div style="margin: 10px 30px 30px; color: black; font-weight: normal">
+    <div id="div" style="margin: 10px 30px 30px; color: black; font-weight: normal">
         <img src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" 
         alt="logo" width="100" height="100"/>
-        
-        <h2>Proyecto Ausencias Profesorado</h2>
 
-        Proyecto Final del Curso (Desarrollo aplicación de Horario de Ausencias del Profesorado)
-
-        <p>Aplicación PWA + FullStack MEN (MongoDB + Express + Nodejs).</p>
-        <p>Desplegada en <a href="https://herokuapp.com/" target="_blank">Heroku</a>.</p>
-        <p>2º CFGS Desarrollo de Aplicaciones de Web | Curso 2018/2019, I.E.S. Luis Vélez de Guevara. Écija, Sevilla</p>
-        <p>(Recomendado instalar si se usa Chrome en el dispositivo)</p>
+        <img width="300" height="80" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f361c20-87a0-47f4-9217-383117f5371c/d6j6xa9-1a77fd5f-5311-4992-a4cc-bf52c2a65a0d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVmMzYxYzIwLTg3YTAtNDdmNC05MjE3LTM4MzExN2Y1MzcxY1wvZDZqNnhhOS0xYTc3ZmQ1Zi01MzExLTQ5OTItYTRjYy1iZjUyYzJhNjVhMGQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TMUl6Rx5XwrQMZq0Hm9A4qNV8d6shXC-cS6oAFMnMHk" >
+        <br><small>AQUI VA ER LOGIN ABE</small><br><br>
+        <p>(Recomendado instalar si se usa desde Chrome)</p>
     </div>
     
     <div class="footer">
-        <p>Copyright &copy; JAMP</p>
+        <p>Copyright &copy; JAMP</p><small>IES Luis V&eacute;lez, &Eacute;cija</small>
     </div>`;
 
 window.addEventListener('load', function () {

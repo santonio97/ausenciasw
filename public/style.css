@@ -95,20 +95,22 @@ input {
     _float: left;
     padding: 10px;
     font-size: 14px;
-    color: black;
-    background-color: #fdebc9;
+    color: rgb(0, 0, 0);
+    background-color: rgb(187, 187, 187);
     border: 0;
     outline: none;
     margin-left: 5px;
     margin-bottom: 4px;
+    border-radius: 10px;
+    font-family: "Comic Sans MS", cursive, sans-serif
 }
 
 input:focus {
-    background-color: #fdebc9;
+    background-color: rgb(187, 187, 187);
 }
 
 input:required:invalid, input:focus:invalid {
-    background-color: lightpink;
+    background-color: rgb(255, 109, 131);
 }
 
 button {
@@ -125,7 +127,7 @@ button {
 }
 
 button:hover {
-    background: #fcefc6;
+    background: transparent;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -145,18 +147,6 @@ button.eliminar {
     border: 1px solid red;
     color: red;
     content: " Eliminar";
-}
-
-button.insertar:hover {
-    background: #ffffff;
-}
-
-button.modificar:hover {
-    background: #ffffff;
-}
-
-button.eliminar:hover {
-    background: #ffffff;
 }
 
 button.insertar>span::after {
@@ -252,7 +242,7 @@ table tbody tr {
 }
 
 table tbody tr:hover {
-    background-color: #eee;
+    background-color: transparent;
     color: #000;
 }
 
