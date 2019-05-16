@@ -4,10 +4,6 @@ let colecciones = {
 };
 
 
-let hoy = new Date();
-// Fecha formateada. getMonth() devuelve un valor entre 0 y 11.
-let hoyYYYYMMDD = hoy.getFullYear() + ('0' + (hoy.getMonth()+1)).slice(-2) + ('0' + hoy.getDate()).slice(-2)
-
 
 let index = `
     <style>
@@ -46,6 +42,20 @@ let index = `
         <p>Copyright &copy; JAMP</p><small>IES Luis V&eacute;lez, &Eacute;cija</small>
     </div>`;
 
+
+function desactivarMenus () {
+    document.getElementById('nav-app').style.display = 'none';
+//    document.getElementById('nav-login').style.display = 'none';
+}
+
+
+window.addEventListener('load', function () {
+
+    let hoy = new Date();
+    // Fecha formateada. getMonth() devuelve un valor entre 0 y 11.
+    let hoyYYYYMMDD = hoy.getFullYear() + ('0' + (hoy.getMonth()+1)).slice(-2) + ('0' + hoy.getDate()).slice(-2)
+    
+
     let login = `
     <div>
 Nombre: <input type="text" name="nombre" id="loginNombre">
@@ -62,7 +72,8 @@ fetch('/api/docentes/'
         document.getElementById('nav-login').style.display = 'none';
         document.getElementById('login').style.display = 'none';
         document.getElementById('inicio').style.display = 'block';
-        document.getElementById('inicio').innerHTML =  verAusencias(hoyYYYYMMDD); 
+        document.getElementById('inicio').innerHTML= '<h1>AUSENCIAS DE HOY</h1><br/>';
+        verAusencias(hoyYYYYMMDD); 
     }
     else {
         console.log('ko');
@@ -73,13 +84,6 @@ fetch('/api/docentes/'
 `;
 
 
-function desactivarMenus () {
-    document.getElementById('nav-app').style.display = 'none';
-//    document.getElementById('nav-login').style.display = 'none';
-}
-
-
-window.addEventListener('load', function () {
 
     desactivarMenus(); 
 
@@ -93,12 +97,14 @@ window.addEventListener('load', function () {
 
     l.style.display = 'block';
     document.getElementById('nav-login').innerHTML = login;
+    l.innerHTML = "<h1>AUSENCIAS DE HOY</h1><br/>";
     verAusencias(hoyYYYYMMDD);
 
 
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
         i.style.display = 'block';
-        i.innerHTML =  verAusencias(hoyYYYYMMDD); 
+        i.innerHTML =  "<h1>AUSENCIAS DE HOY</h1><br/>";
+        verAusencias(hoyYYYYMMDD); 
         a.style.display = 'none'; a.innerHTML = '';
         c.style.display = 'none'; c.innerHTML = '';
     });
@@ -140,10 +146,12 @@ function verAusencias(fecha) {
         })
         .then(res => res.json())
         .then(data => {
-          // document.getElementById('inicio').innerHTML 
-          //  = json2table('ausencias', data, "table-responsive-full sort-table")
-          document.getElementById('login').innerHTML = JSON.stringify(data); 
-          document.getElementById('inicio').innerHTML = JSON.stringify(data); 
+          // Estas 2 líneas se eliminarán en un futuro
+          document.getElementById('login').innerHTML += JSON.stringify(data); 
+          document.getElementById('inicio').innerHTML += JSON.stringify(data); 
+        
+          document.getElementById('login').innerHTML += mostrarAusencias(data);
+          document.getElementById('login').innerHTML += mostrarAusencias(data);
         })
 }
 
@@ -230,6 +238,17 @@ function eliminar(coleccion, id) {
 
 function entradaOK() {
     return true;
+}
+
+// Función para CONVERTIR AUSENCIAS JSON A HTML
+function mostrarAusencias( jsonData ) {
+ 
+    // José Antonio, esta función debes desarrollarla tú.
+    // Es una simple tabla sin botones de insertar, modificar ni eliminar. 
+    //
+    // Tampoco debe tener ningún tipo de input.
+    //
+    // Debe devolver un string con texto HTML
 }
 
 // Función para CONVERTIR JSON A TABLA HTML
