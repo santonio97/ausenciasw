@@ -64,8 +64,14 @@
 <body style="background-size:100% 100%;">
     <button onclick="topFunction()" id="myBtn" title="Ir arriba">⬆️</button>
 
-    <nav style="border: 2px solid lightblue;">
-        <input name="menu-opcion" type="radio" id="menu-inicio" checked>
+    <div style="border: 2px solid lightblue;" id="nav-login" >
+      <!-- <input name="menu-opcion" type="radio" id="menu-login" checked>
+      <label for="menu-login" id="menu-login-label"> <span> 🔑 </span> </label> -->
+    </div>
+    
+    <nav style="border: 2px solid lightblue;" id="nav-app">
+        
+        <input name="menu-opcion" type="radio" id="menu-inicio">
         <label for="menu-inicio" id="menu-inicio-label"> <span> 🏠 </span> </label>
 
         <input name="menu-opcion" type="radio" id="menu-docentes">
@@ -73,12 +79,17 @@
 
         <input name="menu-opcion" type="radio" id="menu-ausencias">
         <label for="menu-ausencias" id="menu-ausencias-label"> <span> 📓 </span></label>
+
+        <input name="menu-opcion" type="radio" id="menu-acerca">
+        <label for="menu-acerca" id="menu-acerca-label"> <span> ℹ️ </span></label>
     </nav>
 
     <main id="contenido">
+        <div class="seccion" id="login"></div>
         <div class="seccion" id="inicio"></div>
         <div class="seccion" id="docentes"></div>
         <div class="seccion" id="ausencias"></div>
+        <div class="seccion" id="acerca"></div>
     </main>
 
     <div id="OK"> ✔️ </div>

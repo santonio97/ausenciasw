@@ -3,6 +3,12 @@ let colecciones = {
     ausencias: { fecha: 'string', hora: 'number', nombre: 'string', curso: 'string' }
 };
 
+
+let hoy = new Date();
+// Fecha formateada. getMonth() devuelve un valor entre 0 y 11.
+let hoyYYYYMMDD = hoy.getFullYear() + ('0' + (hoy.getMonth()+1)).slice(-2) + ('0' + hoy.getDate()).slice(-2)
+
+
 let index = `
     <style>
         #div {
@@ -40,17 +46,59 @@ let index = `
         <p>Copyright &copy; JAMP</p><small>IES Luis V&eacute;lez, &Eacute;cija</small>
     </div>`;
 
+    let login = `
+    <div>
+Nombre: <input type="text" name="nombre" id="loginNombre">
+Clave: <input type="text" name="clave" id="loginClave">
+<button class="insertar" title="Login" 
+onclick="
+fetch('/api/docentes/'
+  + document.getElementById('loginNombre').value + '/'
+  + document.getElementById('loginClave').value , { method: 'GET' })
+.then(res => res.json())
+.then(data => { 
+    if (JSON.stringify(data) != 'null') {
+        document.getElementById('nav-app').style.display = 'block';
+        document.getElementById('nav-login').style.display = 'none';
+        document.getElementById('login').style.display = 'none';
+        document.getElementById('inicio').style.display = 'block';
+        document.getElementById('inicio').innerHTML =  verAusencias(hoyYYYYMMDD); 
+    }
+    else {
+        console.log('ko');
+    }   
+})
+">Login</button>
+</div>
+`;
+
+
+function desactivarMenus () {
+    document.getElementById('nav-app').style.display = 'none';
+//    document.getElementById('nav-login').style.display = 'none';
+}
+
+
 window.addEventListener('load', function () {
 
+    desactivarMenus(); 
+
+    let l = document.getElementById('login');
     let i = document.getElementById('inicio');
     let a = document.getElementById('docentes');
     let c = document.getElementById('ausencias');
+    let h = document.getElementById('acerca');
 
-    i.innerHTML = index;
-    i.style.display = 'block';
+    h.innerHTML = index;
+
+    l.style.display = 'block';
+    document.getElementById('nav-login').innerHTML = login;
+    verAusencias(hoyYYYYMMDD);
+
 
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
         i.style.display = 'block';
+        i.innerHTML =  verAusencias(hoyYYYYMMDD); 
         a.style.display = 'none'; a.innerHTML = '';
         c.style.display = 'none'; c.innerHTML = '';
     });
@@ -60,12 +108,22 @@ window.addEventListener('load', function () {
         a.style.display = 'block';
         i.style.display = 'none';
         c.style.display = 'none'; c.innerHTML = '';
+        h.style.display = 'none';
     });
 
     document.getElementById('menu-ausencias').addEventListener('click', function (e) {
         verDocumentos('ausencias');
         c.style.display = 'block';
         i.style.display = 'none';
+        a.style.display = 'none'; a.innerHTML = '';
+        h.style.display = 'none';
+    });
+
+    document.getElementById('menu-acerca').addEventListener('click', function (e) {
+        verDocumentos('ausencias');
+        h.style.display = 'block';
+        i.style.display = 'none';
+        c.style.display = 'none';
         a.style.display = 'none'; a.innerHTML = '';
     });
 
@@ -75,17 +133,20 @@ window.addEventListener('load', function () {
  OPERACIONES CRUD 
 --------------------*/
 
-/*function verAusencias(coleccion) {
-    fetch(`/api/${coleccion}`,
+function verAusencias(fecha) {
+    fetch(`/api/ausencias/${fecha}`,
         {
             method: 'GET'
         })
         .then(res => res.json())
         .then(data => {
-            document.getElementById(`${coleccion}`).innerHTML
-                = json2table(coleccion, data, "table-responsive-full sort-table")
+          // document.getElementById('inicio').innerHTML 
+          //  = json2table('ausencias', data, "table-responsive-full sort-table")
+          document.getElementById('login').innerHTML = JSON.stringify(data); 
+          document.getElementById('inicio').innerHTML = JSON.stringify(data); 
         })
-}*/
+}
+
 
 function verDocumentos(coleccion) {
     fetch(`/api/${coleccion}`,
