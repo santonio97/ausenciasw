@@ -5,18 +5,22 @@ const router = express.Router();
 
 // ver todos los profesores
 router.get('/docentes', (req, res) => {
-    Docente.find({}, (err, data) => {
-        if (err) res.json({ error: err });
-        else res.json(data);
-    });
+    Docente.find({})
+           .sort({ profesor: 1, departamenteo: 1})
+           .exec( (err, data) => {
+                if (err) res.json({ error: err });
+                else res.json(data);
+            });
 });
 
 // ver todas las ausencias
 router.get('/ausencias', (req, res) => {
-    Ausencias.find({}, (err, data) => {
-        if (err) res.json({ error: err });
-        else res.json(data);
-    });
+    Ausencias.find({})
+             .sort({ fecha: -1, hora: 1})
+             .exec( (err, data) => {
+                if (err) res.json({ error: err });
+                else res.json(data);
+            });
 });
 
 // ver un profesor
@@ -49,19 +53,39 @@ router.get('/docentes/:nombre/:clave', (req, res) => {
 //     });
 // });
 
+// router.get('/ausencias/:fecha', (req, res) => {
+//     Ausencias.find({ fecha: req.params.fecha }, (err, data) => {
+//         if (err) res.json({ error: err });
+//         else res.json(data);
+//     });
+// });
+
+// router.get('/ausencias/:fecha/:hora', (req, res) => {
+//     Ausencias.find({ fecha: req.params.fecha, hora: req.params.hora }, (err, data) => {
+//         if (err) res.json({ error: err });
+//         else res.json(data);
+//     });
+// });
+
 router.get('/ausencias/:fecha', (req, res) => {
-    Ausencias.find({ fecha: req.params.fecha }, (err, data) => {
-        if (err) res.json({ error: err });
-        else res.json(data);
-    });
+    Ausencias.find({ fecha: req.params.fecha })
+             .sort({ fecha: -1, hora: 1})
+             .exec( (err, data) => {
+                if (err) res.json({ error: err });
+                else res.json(data);
+            });
 });
 
 router.get('/ausencias/:fecha/:hora', (req, res) => {
-    Ausencias.find({ fecha: req.params.fecha, hora: req.params.hora }, (err, data) => {
-        if (err) res.json({ error: err });
-        else res.json(data);
-    });
+    Ausencias.find({ fecha: req.params.fecha, hora: req.params.hora })
+        .sort({ fecha: -1, hora: 1})
+        .exec( (err, data) => {
+           if (err) res.json({ error: err });
+           else res.json(data);
+       });
 });
+
+
 
 
 

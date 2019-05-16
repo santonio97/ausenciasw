@@ -58,8 +58,8 @@ window.addEventListener('load', function () {
 
     let login = `
     <div>
-Nombre: <input type="text" name="nombre" id="loginNombre">
-Clave: <input type="text" name="clave" id="loginClave">
+<input type="text" name="nombre" id="loginNombre" placeholder="nombre">
+<input type="text" name="clave" id="loginClave" placeholder="contraseña">
 <button class="insertar" title="Login" 
 onclick="
 fetch('/api/docentes/'
