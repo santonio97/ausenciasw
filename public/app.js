@@ -49,6 +49,8 @@ function desactivarMenus() {
 
 window.addEventListener('load', function () {
 
+    desactivarMenus(); 
+
     let hoy = new Date();
     // Fecha formateada. getMonth() devuelve un valor entre 0 y 11.
     let hoyYYYYMMDD = hoy.getFullYear() + ('0' + (hoy.getMonth() + 1)).slice(-2) + ('0' + hoy.getDate()).slice(-2);
@@ -76,8 +78,8 @@ window.addEventListener('load', function () {
     }
 </style>
     <div>
-Nombre: <input type="text" name="nombre" id="loginNombre"><br>
-Clave: <input type="password" name="clave" id="loginClave">
+<input type="text" name="nombre" id="loginNombre" placeholder="nombre">
+<input type="text" name="clave" id="loginClave" placeholder="contraseña">
 <button class="insertar" title="Login" 
 onclick="
 fetch('/api/docentes/'
@@ -87,9 +89,9 @@ fetch('/api/docentes/'
 .then(data => { 
     if (JSON.stringify(data) != 'null') {
         document.getElementById('nav-app').style.display = 'block';
+        document.getElementById('inicio').style.display = 'block';
         document.getElementById('nav-login').style.display = 'none';
         document.getElementById('login').style.display = 'none';
-        document.getElementById('inicio').style.display = 'block';
         document.getElementById('inicio').innerHTML= '<h1>AUSENCIAS DE HOY</h1><br/>';
         
         let hoy = new Date();
@@ -109,8 +111,6 @@ fetch('/api/docentes/'
     </div>
 `;
 
-    desactivarMenus();
-
     let l = document.getElementById('login');
     let i = document.getElementById('inicio');
     let a = document.getElementById('docentes');
@@ -121,7 +121,7 @@ fetch('/api/docentes/'
 
     l.style.display = 'block';
     document.getElementById('nav-login').innerHTML = login;
-    l.innerHTML = "<h1>AUSENCIAS DE HOY</h1><br/>";
+    l.innerHTML = "<h1>AUSENCIAS DE HOY</h1><br/>" + hoy.getDate() + "<br/>";
     verAusencias(hoyYYYYMMDD);
 
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
@@ -169,12 +169,13 @@ function verAusencias(fecha) {
         })
         .then(res => res.json())
         .then(data => {
-            // Estas 2 líneas se eliminarán en un futuro
-            document.getElementById('login').innerHTML += JSON.stringify(data);
-            document.getElementById('inicio').innerHTML += JSON.stringify(data);
-
-            document.getElementById('login').innerHTML += mostrarAusencias(data);
-            document.getElementById('login').innerHTML += mostrarAusencias(data);
+          // Estas 2 líneas se eliminarán en un futuro
+          document.getElementById('login').innerHTML += JSON.stringify(data); 
+          document.getElementById('inicio').innerHTML += JSON.stringify(data); 
+        
+         // Estas 2 líneas se descomentarán en un futuro 
+         // document.getElementById('login').innerHTML += mostrarAusencias(data);
+         // document.getElementById('login').innerHTML += mostrarAusencias(data);
         })
 }
 
