@@ -3,8 +3,6 @@ let colecciones = {
     ausencias: { fecha: 'string', hora: 'number', nombre: 'string', curso: 'string' }
 };
 
-
-
 let index = `
     <style>
         #div {
@@ -34,32 +32,52 @@ let index = `
         alt="logo" width="100" height="100"/>
 
         <img width="300" height="80" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f361c20-87a0-47f4-9217-383117f5371c/d6j6xa9-1a77fd5f-5311-4992-a4cc-bf52c2a65a0d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVmMzYxYzIwLTg3YTAtNDdmNC05MjE3LTM4MzExN2Y1MzcxY1wvZDZqNnhhOS0xYTc3ZmQ1Zi01MzExLTQ5OTItYTRjYy1iZjUyYzJhNjVhMGQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TMUl6Rx5XwrQMZq0Hm9A4qNV8d6shXC-cS6oAFMnMHk" >
-        <br><small>AQUI VA ER LOGIN ABE</small><br><br>
-        <p>(Recomendado instalar si se usa desde Chrome)</p>
+        
+        (Recomendado instalar si se usa desde Chrome)
     </div>
+
+    <br><button><a href="/">Salir</a></button>
     
     <div class="footer">
         <p>Copyright &copy; JAMP</p><small>IES Luis V&eacute;lez, &Eacute;cija</small>
     </div>`;
 
-
-function desactivarMenus () {
+function desactivarMenus() {
     document.getElementById('nav-app').style.display = 'none';
-//    document.getElementById('nav-login').style.display = 'none';
+    //    document.getElementById('nav-login').style.display = 'none';
 }
-
 
 window.addEventListener('load', function () {
 
     let hoy = new Date();
     // Fecha formateada. getMonth() devuelve un valor entre 0 y 11.
-    let hoyYYYYMMDD = hoy.getFullYear() + ('0' + (hoy.getMonth()+1)).slice(-2) + ('0' + hoy.getDate()).slice(-2)
-    
+    let hoyYYYYMMDD = hoy.getFullYear() + ('0' + (hoy.getMonth() + 1)).slice(-2) + ('0' + hoy.getDate()).slice(-2);
 
-    let login = `
+    let login = `<style>
+    #div {
+        text-align: justify
+    }
+
+    img { 
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: linear-gradient(to bottom, #ffffff 0%, #3399ff 100%);
+        color: black;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
     <div>
-Nombre: <input type="text" name="nombre" id="loginNombre">
-Clave: <input type="text" name="clave" id="loginClave">
+Nombre: <input type="text" name="nombre" id="loginNombre"><br>
+Clave: <input type="password" name="clave" id="loginClave">
 <button class="insertar" title="Login" 
 onclick="
 fetch('/api/docentes/'
@@ -73,19 +91,25 @@ fetch('/api/docentes/'
         document.getElementById('login').style.display = 'none';
         document.getElementById('inicio').style.display = 'block';
         document.getElementById('inicio').innerHTML= '<h1>AUSENCIAS DE HOY</h1><br/>';
-        verAusencias(hoyYYYYMMDD); 
+        
+        let hoy = new Date();
+        let hoyYYYYMMDD = hoy.getFullYear() + ('0' + (hoy.getMonth()+1)).slice(-2) + ('0' + hoy.getDate()).slice(-2);
+        verAusencias(hoyYYYYMMDD);
     }
     else {
         console.log('ko');
+        alert('credenciales no v&aacute;lidas');
     }   
 })
 ">Login</button>
 </div>
+ 
+<div class="footer">
+        <p>Copyright &copy; JAMP</p><small>IES Luis V&eacute;lez, &Eacute;cija</small>
+    </div>
 `;
 
-
-
-    desactivarMenus(); 
+    desactivarMenus();
 
     let l = document.getElementById('login');
     let i = document.getElementById('inicio');
@@ -100,11 +124,10 @@ fetch('/api/docentes/'
     l.innerHTML = "<h1>AUSENCIAS DE HOY</h1><br/>";
     verAusencias(hoyYYYYMMDD);
 
-
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
         i.style.display = 'block';
-        i.innerHTML =  "<h1>AUSENCIAS DE HOY</h1><br/>";
-        verAusencias(hoyYYYYMMDD); 
+        i.innerHTML = "<h1>AUSENCIAS DE HOY</h1><br/>";
+        verAusencias(hoyYYYYMMDD);
         a.style.display = 'none'; a.innerHTML = '';
         c.style.display = 'none'; c.innerHTML = '';
     });
@@ -146,12 +169,12 @@ function verAusencias(fecha) {
         })
         .then(res => res.json())
         .then(data => {
-          // Estas 2 líneas se eliminarán en un futuro
-          document.getElementById('login').innerHTML += JSON.stringify(data); 
-          document.getElementById('inicio').innerHTML += JSON.stringify(data); 
-        
-          document.getElementById('login').innerHTML += mostrarAusencias(data);
-          document.getElementById('login').innerHTML += mostrarAusencias(data);
+            // Estas 2 líneas se eliminarán en un futuro
+            document.getElementById('login').innerHTML += JSON.stringify(data);
+            document.getElementById('inicio').innerHTML += JSON.stringify(data);
+
+            document.getElementById('login').innerHTML += mostrarAusencias(data);
+            document.getElementById('login').innerHTML += mostrarAusencias(data);
         })
 }
 
@@ -241,14 +264,17 @@ function entradaOK() {
 }
 
 // Función para CONVERTIR AUSENCIAS JSON A HTML
-function mostrarAusencias( jsonData ) {
- 
+function mostrarAusencias() {
+
     // José Antonio, esta función debes desarrollarla tú.
     // Es una simple tabla sin botones de insertar, modificar ni eliminar. 
     //
     // Tampoco debe tener ningún tipo de input.
     //
     // Debe devolver un string con texto HTML
+
+//mostrarAusencias(JSON.stringify(data));
+    
 }
 
 // Función para CONVERTIR JSON A TABLA HTML
@@ -319,7 +345,7 @@ function json2table(collection, jsonData, classes) {
 <span style="color:black; font-weight:bold; font-size:1em;">${campo.toUpperCase()} </span>
 <input id="${collection}.${campo}" 
     ${colecciones[collection][campo] == 'number'
-            ? `type="number" min="1" max="6" placeholder=${campo} `
+            ? `type="number" min="1" max="6" maxlength="1" placeholder=${campo} `
             : `type="text" placeholder=${campo}`}  >
 </td>`;
 
@@ -328,7 +354,7 @@ function json2table(collection, jsonData, classes) {
 <span style="color:black; font-weight:bold; font-size:1em;">${campo.capitalize()} </span>
 <input id="${documento._id}.${campo}" 
     ${colecciones[collection][campo] == 'number'
-            ? 'type="number" min="1" max="6"'
+            ? 'type="number" min="1" max="6" maxlength="1"'
             : 'type="text" '}  
     value="${colecciones[collection][campo] == 'number'
             ? documento[campo]
@@ -360,28 +386,30 @@ function json2table(collection, jsonData, classes) {
     return table;
 }
 
-// Función para ORDENAR POR COLUMNAS (https://codepen.io/mlegakis/pen/jBYPGr)
-function sort(ascending, columnClassName, tableId) {
-    let tbody = document.getElementById(tableId).getElementsByTagName("tbody")[0];
-    let rows = tbody.getElementsByTagName("tr");
-    let unsorted = true;
-    while (unsorted) {
-        unsorted = false
-        for (let r = 0; r < rows.length - 1; r++) {
-            let row = rows[r];
-            let nextRow = rows[r + 1];
-            let value = row.getElementsByClassName(columnClassName)[0].childNodes[1].value;
-            let nextValue = nextRow.getElementsByClassName(columnClassName)[0].childNodes[1].value;
-            value = value.replace(',', ' '); // in case a comma is used in float number
-            nextValue = nextValue.replace(',', '');
-            if (!isNaN(value)) {
-                value = parseFloat(value);
-                nextValue = parseFloat(nextValue);
-            }
-            if (ascending ? value > nextValue : value < nextValue) {
-                tbody.insertBefore(nextRow, row);
-                unsorted = true;
-            }
-        }
-    }
-};
+// NO FUNCIONA, POR LO TANTO LO COMENTO
+
+// Función para ORDENAR POR COLUMNAS
+// function sort(ascending, columnClassName, tableId) {
+//     let tbody = document.getElementById(tableId).getElementsByTagName("tbody")[0];
+//     let rows = tbody.getElementsByTagName("tr");
+//     let unsorted = true;
+//     while (unsorted) {
+//         unsorted = false
+//         for (let r = 0; r < rows.length - 1; r++) {
+//             let row = rows[r];
+//             let nextRow = rows[r + 1];
+//             let value = row.getElementsByClassName(columnClassName)[0].childNodes[1].value;
+//             let nextValue = nextRow.getElementsByClassName(columnClassName)[0].childNodes[1].value;
+//             value = value.replace(',', ' '); // in case a comma is used in float number
+//             nextValue = nextValue.replace(',', '');
+//             if (!isNaN(value)) {
+//                 value = parseFloat(value);
+//                 nextValue = parseFloat(nextValue);
+//             }
+//             if (ascending ? value > nextValue : value < nextValue) {
+//                 tbody.insertBefore(nextRow, row);
+//                 unsorted = true;
+//             }
+//         }
+//     }
+// };
