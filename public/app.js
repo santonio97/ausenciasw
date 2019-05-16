@@ -48,6 +48,14 @@ function desactivarMenus () {
 //    document.getElementById('nav-login').style.display = 'none';
 }
 
+let diaSemana = (num) => 
+  ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][num];
+
+let mes = (num) => 
+  ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+   "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][num];
+
+
 
 window.addEventListener('load', function () {
 
@@ -85,6 +93,12 @@ fetch('/api/docentes/'
 </div>
 `;
 
+    let cabeceraAusencias = `
+    <h1>AUSENCIAS DE HOY</h1>
+    <h2> ${diaSemana(hoy.getDay())}, 
+    ${hoyYYYYMMDD.slice(-2)} de ${mes(hoy.getMonth())} de ${hoyYYYYMMDD.slice(0,4)} 
+    </h2>`;
+
     let l = document.getElementById('login');
     let i = document.getElementById('inicio');
     let a = document.getElementById('docentes');
@@ -95,7 +109,7 @@ fetch('/api/docentes/'
 
     l.style.display = 'block';
     document.getElementById('nav-login').innerHTML = login;
-    l.innerHTML = "<h1>AUSENCIAS DE HOY</h1><br/>" + hoy.getDate() + "<br/>";
+    l.innerHTML = cabeceraAusencias; 
     verAusencias(hoyYYYYMMDD);
 
 
