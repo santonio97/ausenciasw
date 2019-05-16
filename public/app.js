@@ -78,8 +78,8 @@ window.addEventListener('load', function () {
     }
 </style>
     <div>
-<input type="text" name="nombre" id="loginNombre" placeholder="nombre">
-<input type="text" name="clave" id="loginClave" placeholder="contraseña">
+Usuario: <input type="text" name="nombre" id="loginNombre" placeholder="nombre"><br>
+Contrase&ntilde;a: <input type="password" name="clave" id="loginClave" placeholder="contraseña"><br>
 <button class="insertar" title="Login" 
 onclick="
 fetch('/api/docentes/'
@@ -121,7 +121,7 @@ fetch('/api/docentes/'
 
     l.style.display = 'block';
     document.getElementById('nav-login').innerHTML = login;
-    l.innerHTML = "<h1>AUSENCIAS DE HOY</h1><br/>" + hoy.getDate() + "<br/>";
+    l.innerHTML = "<h1>AUSENCIAS DE HOY</h1><br/>" + "Día: " +hoy.getDate() + "<br/>";
     verAusencias(hoyYYYYMMDD);
 
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
