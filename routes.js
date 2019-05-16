@@ -34,22 +34,36 @@ router.get('/docentes/:profesor', (req, res) => {
     });
 });
 
-// ver una ausencia
-router.get('/ausencias/:id', (req, res) => {
-    Ausencias.findOne({ _id: req.params.id }, (err, data) => {
+router.get('/docentes/:nombre/:clave', (req, res) => {
+    Docente.findOne({ profesor: req.params.nombre, clave: req.params.clave }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
 
-/*
+// ver una ausencia - Este END-POINT no es necesario, además da conflicto con el siguiente
+// router.get('/ausencias/:id', (req, res) => {
+//     Ausencias.findOne({ _id: req.params.id }, (err, data) => {
+//         if (err) res.json({ error: err });
+//         else res.json(data);
+//     });
+// });
+
 router.get('/ausencias/:fecha', (req, res) => {
     Ausencias.find({ fecha: req.params.fecha }, (err, data) => {
         if (err) res.json({ error: err });
         else res.json(data);
     });
 });
-*/
+
+router.get('/ausencias/:fecha/:hora', (req, res) => {
+    Ausencias.find({ fecha: req.params.fecha, hora: req.params.hora }, (err, data) => {
+        if (err) res.json({ error: err });
+        else res.json(data);
+    });
+});
+
+
 
 // ---------------------------------------------------------------
 // Comentado porque no se va a usar (COMENTAR DESPUES ESTE BLOQUE)
