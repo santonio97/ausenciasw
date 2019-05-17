@@ -21,7 +21,7 @@ html {
 
 body {
     background-image: url("fondo.png");
-    color: rgb(104, 16, 16);
+    color: rgb(0, 0, 0);
     -webkit-font-smoothing: antialiased;
     line-height: 1.42857143;
     background-size: cover;

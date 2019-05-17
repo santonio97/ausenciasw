@@ -5,6 +5,7 @@ let colecciones = {
 
 let index = `
     <style>
+        
         #div {
             text-align: justify
         }
@@ -26,15 +27,6 @@ let index = `
             text-align: center;
         }
     </style>
-
-    <div id="div" style="margin: 10px 30px 30px; color: black; font-weight: normal">
-        <img src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" 
-        alt="logo" width="100" height="100"/>
-
-        <img width="300" height="80" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f361c20-87a0-47f4-9217-383117f5371c/d6j6xa9-1a77fd5f-5311-4992-a4cc-bf52c2a65a0d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVmMzYxYzIwLTg3YTAtNDdmNC05MjE3LTM4MzExN2Y1MzcxY1wvZDZqNnhhOS0xYTc3ZmQ1Zi01MzExLTQ5OTItYTRjYy1iZjUyYzJhNjVhMGQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TMUl6Rx5XwrQMZq0Hm9A4qNV8d6shXC-cS6oAFMnMHk" >
-        
-        (Recomendado instalar si se usa desde Chrome)
-    </div>
 
     <br><button><a href="/">Salir</a></button>
     
@@ -86,6 +78,8 @@ window.addEventListener('load', function () {
     }
 </style>
     <div>
+    <h2 style="text-align:center; font-style: italic; font-family: roboto, arial">Iniciar sesi&oacute;n</h2>
+    <hr><br>
 Usuario: <input type="text" name="nombre" id="loginNombre" placeholder="nombre"><br>
 Contrase&ntilde;a: <input type="password" name="clave" id="loginClave" placeholder="contraseña"><br>
 <button class="insertar" title="Login" 
@@ -120,10 +114,12 @@ fetch('/api/docentes/'
 `;
 
     let cabeceraAusencias = `
-    <h1>AUSENCIAS DE HOY</h1>
-    <h2> ${diaSemana(hoy.getDay())}, 
+    <img src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" 
+        alt="logo" width="100" height="100" style="margin-top: -30px"/>
+    <h2>AUSENCIAS DE HOY</h2>
+    <h4> ${diaSemana(hoy.getDay())}, 
     ${hoyYYYYMMDD.slice(-2)} de ${mes(hoy.getMonth())} de ${hoyYYYYMMDD.slice(0,4)} 
-    </h2>`;
+    </h4><br>`;
 
     let l = document.getElementById('login');
     let i = document.getElementById('inicio');
@@ -136,11 +132,12 @@ fetch('/api/docentes/'
     l.style.display = 'block';
     document.getElementById('nav-login').innerHTML = login;
     l.innerHTML = cabeceraAusencias; 
-   verAusencias(hoyYYYYMMDD);
-
+    verAusencias(hoyYYYYMMDD);
+    
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
         i.style.display = 'block';
-        i.innerHTML = "<h1>AUSENCIAS DE HOY</h1><br/>";
+        i.innerHTML = "<h2>AUSENCIAS DE HOY</h2><br/>";
+        i.innerHTML = cabeceraAusencias;
         verAusencias(hoyYYYYMMDD);
         a.style.display = 'none'; a.innerHTML = '';
         c.style.display = 'none'; c.innerHTML = '';
@@ -169,7 +166,6 @@ fetch('/api/docentes/'
         c.style.display = 'none';
         a.style.display = 'none'; a.innerHTML = '';
     });
-
 });
 
 /*--------------------
@@ -279,17 +275,9 @@ function entradaOK() {
 }
 
 // Función para CONVERTIR AUSENCIAS JSON A HTML
-function mostrarAusencias() {
-
-    // José Antonio, esta función debes desarrollarla tú.
-    // Es una simple tabla sin botones de insertar, modificar ni eliminar. 
+function mostrarAusencias(  ) {
     //
-    // Tampoco debe tener ningún tipo de input.
     //
-    // Debe devolver un string con texto HTML
-
-//mostrarAusencias(JSON.stringify(data));
-    
 }
 
 // Función para CONVERTIR JSON A TABLA HTML
