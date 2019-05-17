@@ -5,7 +5,6 @@ let colecciones = {
 
 let index = `
     <style>
-        
         #div {
             text-align: justify
         }
@@ -28,6 +27,15 @@ let index = `
         }
     </style>
 
+    <div id="div" style="margin: 10px 30px 30px; color: black; font-weight: normal">
+        <img src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" 
+        alt="logo" width="100" height="100"/>
+
+        <img width="300" height="80" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f361c20-87a0-47f4-9217-383117f5371c/d6j6xa9-1a77fd5f-5311-4992-a4cc-bf52c2a65a0d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVmMzYxYzIwLTg3YTAtNDdmNC05MjE3LTM4MzExN2Y1MzcxY1wvZDZqNnhhOS0xYTc3ZmQ1Zi01MzExLTQ5OTItYTRjYy1iZjUyYzJhNjVhMGQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TMUl6Rx5XwrQMZq0Hm9A4qNV8d6shXC-cS6oAFMnMHk" >
+        
+        (Recomendado instalar si se usa desde Chrome)
+    </div>
+
     <br><button><a href="/">Salir</a></button>
     
     <div class="footer">
@@ -36,7 +44,6 @@ let index = `
 
 function desactivarMenus() {
     document.getElementById('nav-app').style.display = 'none';
-    //    document.getElementById('nav-login').style.display = 'none';
 }
 
 
@@ -49,11 +56,17 @@ let mes = (num) =>
 
 window.addEventListener('load', function () {
 
-    desactivarMenus(); 
+   // desactivarMenus();
 
     let hoy = new Date();
     // Fecha formateada. getMonth() devuelve un valor entre 0 y 11.
     let hoyYYYYMMDD = hoy.getFullYear() + ('0' + (hoy.getMonth() + 1)).slice(-2) + ('0' + hoy.getDate()).slice(-2);
+
+    let cabeceraAusencias = `
+    <h2>AUSENCIAS DE HOY</h2>
+    <h3> ${diaSemana(hoy.getDay())}, 
+    ${hoyYYYYMMDD.slice(-2)} de ${mes(hoy.getMonth())} de ${hoyYYYYMMDD.slice(0,4)} 
+    </h3>`;
 
     let login = `<style>
     #div {
@@ -77,12 +90,10 @@ window.addEventListener('load', function () {
         text-align: center;
     }
 </style>
-    <div>
-    <h2 style="text-align:center; font-style: italic; font-family: roboto, arial">Iniciar sesi&oacute;n</h2>
-    <hr><br>
-Usuario: <input type="text" name="nombre" id="loginNombre" placeholder="nombre"><br>
-Contrase&ntilde;a: <input type="password" name="clave" id="loginClave" placeholder="contraseña"><br>
-<button class="insertar" title="Login" 
+<div>
+<input type="text" name="nombre" id="loginNombre" placeholder="usuario">
+<input type="password" name="clave" id="loginClave" placeholder="contraseña">
+<button class="insertar" title="login" 
 onclick="
 fetch('/api/docentes/'
   + document.getElementById('loginNombre').value + '/'
@@ -94,33 +105,19 @@ fetch('/api/docentes/'
         document.getElementById('inicio').style.display = 'block';
         document.getElementById('nav-login').style.display = 'none';
         document.getElementById('login').style.display = 'none';
-        document.getElementById('inicio').innerHTML= '<h1>AUSENCIAS DE HOY</h1><br/>';
-        
-        let hoy = new Date();
-        let hoyYYYYMMDD = hoy.getFullYear() + ('0' + (hoy.getMonth()+1)).slice(-2) + ('0' + hoy.getDate()).slice(-2);
-        verAusencias(hoyYYYYMMDD);
     }
     else {
-        console.log('ko');
         alert('credenciales no v&aacute;lidas');
     }   
 })
-">Login</button>
+"> 🔑 </button>
 </div>
  
 <div class="footer">
         <p>Copyright &copy; JAMP</p><small>IES Luis V&eacute;lez, &Eacute;cija</small>
     </div>
 `;
-
-    let cabeceraAusencias = `
-    <img src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" 
-        alt="logo" width="100" height="100" style="margin-top: -30px"/>
-    <h2>AUSENCIAS DE HOY</h2>
-    <h4> ${diaSemana(hoy.getDay())}, 
-    ${hoyYYYYMMDD.slice(-2)} de ${mes(hoy.getMonth())} de ${hoyYYYYMMDD.slice(0,4)} 
-    </h4><br>`;
-
+ 
     let l = document.getElementById('login');
     let i = document.getElementById('inicio');
     let a = document.getElementById('docentes');
@@ -132,11 +129,12 @@ fetch('/api/docentes/'
     l.style.display = 'block';
     document.getElementById('nav-login').innerHTML = login;
     l.innerHTML = cabeceraAusencias; 
+    i.innerHTML = cabeceraAusencias; 
     verAusencias(hoyYYYYMMDD);
+
     
     document.getElementById('menu-inicio').addEventListener('click', function (e) {
         i.style.display = 'block';
-        i.innerHTML = "<h2>AUSENCIAS DE HOY</h2><br/>";
         i.innerHTML = cabeceraAusencias;
         verAusencias(hoyYYYYMMDD);
         a.style.display = 'none'; a.innerHTML = '';
@@ -166,6 +164,7 @@ fetch('/api/docentes/'
         c.style.display = 'none';
         a.style.display = 'none'; a.innerHTML = '';
     });
+
 });
 
 /*--------------------
@@ -178,14 +177,9 @@ function verAusencias(fecha) {
             method: 'GET'
         })
         .then(res => res.json())
-        .then(data => {
-          // Estas 2 líneas se eliminarán en un futuro
-          document.getElementById('login').innerHTML += JSON.stringify(data); 
-          document.getElementById('inicio').innerHTML += JSON.stringify(data); 
-        
-         // Estas 2 líneas se descomentarán en un futuro 
-         // document.getElementById('login').innerHTML += mostrarAusencias(data);
-         // document.getElementById('login').innerHTML += mostrarAusencias(data);
+        .then(data => {     
+          document.getElementById('login').innerHTML += mostrarAusencias(data);
+          document.getElementById('inicio').innerHTML += mostrarAusencias(data);
         })
 }
 
@@ -275,9 +269,44 @@ function entradaOK() {
 }
 
 // Función para CONVERTIR AUSENCIAS JSON A HTML
-function mostrarAusencias(  ) {
-    //
-    //
+function mostrarAusencias(data) {
+    let listadoAusencias = `
+    <h4 style='margin-top: 5px'>1ª HORA</h4>
+    <hr>
+    ${data.filter ( ausencia => ausencia.hora == 1)
+          .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
+          .reduce ((acumulador, item) => acumulador + item,  '')  } 
+    <h4 style='margin-top: 5px'>2ª HORA</h4>
+    <hr>
+    ${data.filter ( ausencia => ausencia.hora == 2)
+          .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
+          .reduce ((acumulador, item) => acumulador + item,  '')  } 
+    <h4 style='margin-top: 5px'>3ª HORA</h4>
+    <hr>
+    ${data.filter ( ausencia => ausencia.hora == 3)
+        .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
+        .reduce ((acumulador, item) => acumulador + item,  '')  } 
+    <h4 style='margin-top: 5px'>4ª HORA</h4>
+    <hr>
+    ${data.filter ( ausencia => ausencia.hora == 4)
+        .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
+        .reduce ((acumulador, item) => acumulador + item,  '')  } 
+    <h4 style='margin-top: 5px'>5ª HORA</h4>
+    <hr>
+    ${data.filter ( ausencia => ausencia.hora == 5)
+            .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
+            .reduce ((acumulador, item) => acumulador + item,  '')  } 
+    <h4 style='margin-top: 5px'>6ª HORA</h4 >
+    <hr>
+    ${data.filter ( ausencia => ausencia.hora == 6)
+            .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
+            .reduce ((acumulador, item) => acumulador + item,  '')  } 
+          `;
+
+
+
+
+    return listadoAusencias;
 }
 
 // Función para CONVERTIR JSON A TABLA HTML
