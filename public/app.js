@@ -33,7 +33,7 @@ let index = `
 
         <img width="300" height="80" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f361c20-87a0-47f4-9217-383117f5371c/d6j6xa9-1a77fd5f-5311-4992-a4cc-bf52c2a65a0d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVmMzYxYzIwLTg3YTAtNDdmNC05MjE3LTM4MzExN2Y1MzcxY1wvZDZqNnhhOS0xYTc3ZmQ1Zi01MzExLTQ5OTItYTRjYy1iZjUyYzJhNjVhMGQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TMUl6Rx5XwrQMZq0Hm9A4qNV8d6shXC-cS6oAFMnMHk" >
         
-        (Recomendado instalar si se usa desde Chrome)
+        
     </div>
 
     <br><button><a href="/">Salir</a></button>
@@ -66,7 +66,9 @@ window.addEventListener('load', function () {
     <h2>AUSENCIAS DE HOY</h2>
     <h3> ${diaSemana(hoy.getDay())}, 
     ${hoyYYYYMMDD.slice(-2)} de ${mes(hoy.getMonth())} de ${hoyYYYYMMDD.slice(0,4)} 
-    </h3>`;
+    </h3>
+    <img width="300" height="80" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f361c20-87a0-47f4-9217-383117f5371c/d6j6xa9-1a77fd5f-5311-4992-a4cc-bf52c2a65a0d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVmMzYxYzIwLTg3YTAtNDdmNC05MjE3LTM4MzExN2Y1MzcxY1wvZDZqNnhhOS0xYTc3ZmQ1Zi01MzExLTQ5OTItYTRjYy1iZjUyYzJhNjVhMGQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.TMUl6Rx5XwrQMZq0Hm9A4qNV8d6shXC-cS6oAFMnMHk" >
+    `;
 
     let login = `<style>
     #div {
@@ -275,32 +277,33 @@ function mostrarAusencias(data) {
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 1)
           .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-          .reduce ((acumulador, item) => acumulador + item,  '')  } 
+          .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
     <h4 style='margin-top: 5px'>2ª HORA</h4>
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 2)
           .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-          .reduce ((acumulador, item) => acumulador + item,  '')  } 
+          .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
     <h4 style='margin-top: 5px'>3ª HORA</h4>
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 3)
         .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-        .reduce ((acumulador, item) => acumulador + item,  '')  } 
+        .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
     <h4 style='margin-top: 5px'>4ª HORA</h4>
     <hr>
+    
     ${data.filter ( ausencia => ausencia.hora == 4)
         .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-        .reduce ((acumulador, item) => acumulador + item,  '')  } 
+        .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
     <h4 style='margin-top: 5px'>5ª HORA</h4>
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 5)
             .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-            .reduce ((acumulador, item) => acumulador + item,  '')  } 
+            .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
     <h4 style='margin-top: 5px'>6ª HORA</h4 >
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 6)
             .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-            .reduce ((acumulador, item) => acumulador + item,  '')  } 
+            .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
           `;
 
 
