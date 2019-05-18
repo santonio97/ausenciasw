@@ -40,8 +40,16 @@ nav {
     z-index: 1;
     background-size: cover;
     font-size: 1.1em;
-    font-family: arial, sans-serif, Verdana
+    font-family: arial, sans-serif, Verdana;
 }
+
+#nav-app, #inicio, #docentes, #ausencias, #acerca {
+    display: none;
+}
+
+#login { 
+    display: block;
+} 
 
 main {
     padding-left: 20px;
@@ -309,7 +317,10 @@ caption {
 /* Responsive table full */
 
 @media (max-width: 767px) {
-    label#menu-inicio-label>span::after, label#menu-docentes-label>span::after, label#menu-ausencias-label>span::after {
+    label#menu-inicio-label>span::after, 
+    label#menu-docentes-label>span::after, 
+    label#menu-ausencias-label>span::after,
+    label#menu-acerca-label>span::after {
         content: none;
     }
     table {
