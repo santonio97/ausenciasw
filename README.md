@@ -51,6 +51,3 @@ Para el **FrontEnd** los archivos necesarios son:
 - public/service-worker.js    (para Aplicación Web Progresiva) 
 - public/icono.png   icono para la Aplicación Web Progresiva 
 
-
-
-continuará...
