@@ -1,4 +1,4 @@
-<h2><img align="left" src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" alt="logo" width="200" height="200"/>Proyecto Ausencias Profesorado</h2>
+<h2><img align="left" src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" alt="logo" width="150" height="150"/>Proyecto Ausencias Profesorado</h2>
 Proyecto Final del Curso (Desarrollo aplicación de Horario de Ausencias del Profesorado)
 <h3>Aplicación PWA + FullStack MEN (MongoDB + Express + Nodejs).</h3>
 <p>Desplegada en <a href="https://herokuapp.com/">Heroku</a></p>
