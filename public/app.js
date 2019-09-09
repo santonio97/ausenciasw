@@ -276,38 +276,34 @@ function mostrarAusencias(data) {
     <h4 style='margin-top: 5px'>1ª HORA</h4>
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 1)
-          .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-          .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
+          .map ( ausencia => '✔️ ' + ausencia.nombre + ' - ' + ausencia.curso + '<br>' )         
+          .reduce ((acumulador, item) => acumulador + item,  '')  } <br>
     <h4 style='margin-top: 5px'>2ª HORA</h4>
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 2)
-          .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-          .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
+          .map ( ausencia => '✔️ ' + ausencia.nombre + ' - ' + ausencia.curso + '<br>' )         
+          .reduce ((acumulador, item) => acumulador + item,  '')  } <br>
     <h4 style='margin-top: 5px'>3ª HORA</h4>
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 3)
-        .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-        .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
+        .map ( ausencia => '✔️ ' + ausencia.nombre + ' - ' + ausencia.curso + '<br>' )         
+        .reduce ((acumulador, item) => acumulador + item,  '')  } <br>
     <h4 style='margin-top: 5px'>4ª HORA</h4>
     <hr>
-    
     ${data.filter ( ausencia => ausencia.hora == 4)
-        .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-        .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
+        .map ( ausencia => '✔️ ' + ausencia.nombre + ' - ' + ausencia.curso + '<br>' )         
+        .reduce ((acumulador, item) => acumulador + item,  '')  } <br>
     <h4 style='margin-top: 5px'>5ª HORA</h4>
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 5)
-            .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
-            .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
+            .map ( ausencia => '✔️ ' + ausencia.nombre + ' - ' + ausencia.curso + '<br>' )         
+            .reduce ((acumulador, item) => acumulador + item,  '')  } <br>
     <h4 style='margin-top: 5px'>6ª HORA</h4 >
     <hr>
     ${data.filter ( ausencia => ausencia.hora == 6)
-            .map ( ausencia => ausencia.nombre + ' - ' + ausencia.curso )         
+            .map ( ausencia => '✔️ ' + ausencia.nombre + ' - ' + ausencia.curso + '<br>' )         
             .reduce ((acumulador, item) => acumulador + item,  '')  } <br><br>
           `;
-
-
-
 
     return listadoAusencias;
 }
