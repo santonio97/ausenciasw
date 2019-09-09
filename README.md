@@ -1,7 +1,7 @@
-<h2><img align="left" src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" alt="logo" width="200" height="200"/>Proyecto Ausencias Profesorado</h2>
+<h2><img align="left" src="https://pbs.twimg.com/profile_images/3658661792/5c71b7b6ab15cbd10bb8f3fb0afd20fd_400x400.jpeg" alt="logo" width="150" height="150"/>Proyecto Ausencias Profesorado</h2>
 Proyecto Final del Curso (Desarrollo aplicación de Horario de Ausencias del Profesorado)
 <h3>Aplicación PWA + FullStack MEN (MongoDB + Express + Nodejs).</h3>
-<p>Desplegada en <a href="https://herokuapp.com/">Heroku</a>, aunque eso lo haré al terminar de desarrollarla en local, para luego subir los archivos a Heroku.</p>
+<p>Desplegada en <a href="https://herokuapp.com/">Heroku</a></p>
 <p>2º CFGS Desarrollo de Aplicaciones de Web | Curso 2018/2019, I.E.S. Luis Vélez de Guevara. Écija, Sevilla</p>
 
 <p>Copyright &copy; José Antonio Márquez Pérez.</p>
@@ -51,6 +51,3 @@ Para el **FrontEnd** los archivos necesarios son:
 - public/service-worker.js    (para Aplicación Web Progresiva) 
 - public/icono.png   icono para la Aplicación Web Progresiva 
 
-
-
-continuará...
